@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use App\User;
-Use Auth;
 
-class UserController extends Controller
+class FuelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data["title"] = "Users";
-        $data["users"] = User::where('role', '!=', Auth::user()->role)->get();
-        return view('User/index', compact("data"));
+        //
     }
 
     /**
@@ -27,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('User/create');
+        //
     }
 
     /**
@@ -38,31 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
-            'age'               => 'required|numeric|max:255',
-            'name'              => 'required|max:255',
-            'email'             => 'required|unique:users,email|max:255',
-            'surname'           => 'required|max:255',
-            'car_model'         => 'required|max:255',
-            'vehicle_plate'     => 'required|max:255',
-            'identity_number'   => 'required|max:255',
-            'passport_number'   => 'required|max:255',
-        ]);
-
-        User::create( [
-            'name'              =>  $request->name,
-            'surname'           =>  $request->surname,
-            'email'             =>  $request->email,
-            'age'               =>  $request->age,
-            'identity_number'   =>  $request->identity_number,
-            'passport_number'   =>  $request->passport_number,
-            'car_model'         =>  $request->car_model,
-            'vehicle_plate'     =>  $request->vehicle_plate,
-            'password'          =>  bcrypt('password'),
-        ] );
-
-        return redirect('/admin/users');
+        //
     }
 
     /**

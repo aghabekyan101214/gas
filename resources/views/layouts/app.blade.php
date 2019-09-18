@@ -26,6 +26,8 @@
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{asset('assets/css/colors/default.css')}}" id="theme" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{{asset('assets/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
 </head>
 <body class="fix-header">
 
@@ -45,13 +47,9 @@
                     <!-- Logo -->
                     <a class="logo" href="index.html">
                         <b>
-                            <img src="{{asset('assets/plugins/images/admin-logo.png')}}" alt="home"
-                                 class="dark-logo"/>
+                            <img src="{{asset('assets/plugins/images/aimtech.png')}}" alt="home"
+                                 class="dark-logo" width="100px" height='55px' />
                         </b>
-                        <span class="hidden-xs">
-                        <img src="{{asset('assets/plugins/images/admin-text.png')}}" alt="home"
-                             class="dark-logo"/>
-                     </span>
                     </a>
                 </div>
 
@@ -100,7 +98,10 @@
 
                     <li><a href="/admin/users" class="waves-effect"><i class="mdi mdi-account fa-fw"></i><span
                                 class="hide-menu">Users</span></a></li>
-
+                    <li><a href="/admin/fuel" class="waves-effect"><i class="mdi mdi-gauge fa-fw"></i><span
+                                class="hide-menu">Gas Station Data</span></a></li>
+                    <li><a href="/admin/bonus" class="waves-effect"><i class="mdi mdi-auto-fix fa-fw"></i><span
+                                class="hide-menu">Bonus</span></a></li>
                 </ul>
             </div>
         </div>
@@ -115,7 +116,6 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="white-box">
                             @yield('content')
                         </div>
                     </div>
@@ -126,8 +126,6 @@
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="{{asset('assets/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('assets/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- Menu Plugin JavaScript -->
