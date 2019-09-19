@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'age'               => 'required|numeric|max:255',
             'name'              => 'required|max:255',
@@ -84,7 +83,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**

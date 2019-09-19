@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <link href="{{asset('assets/plugins/bower_components/datatables/media/css/dataTables.bootstrap.css')}}"
-          rel="stylesheet" type="text/css"/>
+
 
     <div class="white-box">
         <h3 class="box-title m-b-10">All Users</h3>
@@ -39,6 +38,13 @@
                         <td>{{$value->car_model}}</td>
                         <td>{{$value->vehicle_plate}}</td>
                         <td>{{$value->created_at}}</td>
+
+                        <td>
+                            <a href="/admin/users/{{$value->id}}/edit" data-toggle="tooltip"
+                               data-placement="top" title="Edit this user"
+                               class="btn btn-primary btn-circle tooltip-primary"> <i
+                                    class="fas fa-pencil-alt"></i> </a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -46,12 +52,4 @@
         </div>
     </div>
 
-
-
-    <script src="{{asset('assets/plugins/bower_components/datatables/datatables.min.js')}}"></script>
-    <script>
-        $(function () {
-            $('#myTable').DataTable();
-        })
-    </script>
 @endsection

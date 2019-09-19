@@ -13,7 +13,8 @@ class FuelController extends Controller
      */
     public function index()
     {
-        //
+        $data["title"] = "Fuel";
+        return view('Fuel/index', compact("data"));
     }
 
     /**

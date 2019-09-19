@@ -21,4 +21,6 @@ Auth::routes();
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
+    Route::resource('fuel', 'FuelController');
+    Route::resource('bonus', 'BonusController');
 });

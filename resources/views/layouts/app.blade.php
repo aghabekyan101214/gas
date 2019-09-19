@@ -28,6 +28,10 @@
     <link href="{{asset('assets/css/colors/default.css')}}" id="theme" rel="stylesheet">
     <!-- jQuery -->
     <script src="{{asset('assets/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    {{--data table--}}
+    <link href="{{asset('assets/plugins/bower_components/datatables/media/css/dataTables.bootstrap.css')}}"
+          rel="stylesheet" type="text/css"/>
+
 </head>
 <body class="fix-header">
 
@@ -102,6 +106,8 @@
                                 class="hide-menu">Gas Station Data</span></a></li>
                     <li><a href="/admin/bonus" class="waves-effect"><i class="mdi mdi-auto-fix fa-fw"></i><span
                                 class="hide-menu">Bonus</span></a></li>
+                    <li><a href="/admin/bonus" class="waves-effect"><i class="mdi mdi-repeat fa-fw"></i><span
+                                class="hide-menu"> Redeem Bonus</span></a></li>
                 </ul>
             </div>
         </div>
@@ -110,8 +116,8 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Starter Page</h4></div>
+{{--                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">--}}
+{{--                        <h4 class="page-title">{{$data["title"]}}</h4></div>--}}
                 </div>
 
                 <div class="row">
@@ -125,6 +131,14 @@
         </div>
     </div>
 </div>
+
+{{--data table--}}
+<script src="{{asset('assets/plugins/bower_components/datatables/datatables.min.js')}}"></script>
+<script>
+    $(function () {
+        $('#myTable').DataTable();
+    })
+</script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('assets/bootstrap/dist/js/bootstrap.min.js')}}"></script>
