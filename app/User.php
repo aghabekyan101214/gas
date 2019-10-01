@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'age', 'identity_number', 'passport_number', 'car_model', 'vehicle_plate', 'email', 'password'
+        'name', 'surname', 'age', 'identity_number', 'passport_number', 'car_model', 'vehicle_plate', 'email', 'password', 'role', 'password_show', 'station_id'
     ];
 
     /**
@@ -27,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
+
+    public function stations()
+    {
+        return $this->belongsTo("App\Station", "station_id");
+    }
 }

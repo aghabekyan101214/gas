@@ -5,18 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use App\User;
 Use Auth;
+use App\Station;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $data["title"] = "Users";
-        $data["users"] = User::where('role', '!=', Auth::user()->role)->get();
+        $data["users"] = User::with("stations")->where('role', '!=', Auth::user()->role)->get();
         return view('User/index', compact("data"));
     }
 
@@ -25,9 +23,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        return view('User/create');
+        $data = array(
+            "stations" => Station::all(),
+        );
+        return view('User/create', compact("data"));
     }
 
     /**
@@ -39,26 +41,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'age'               => 'required|numeric|max:255',
             'name'              => 'required|max:255',
             'email'             => 'required|unique:users,email|max:255',
             'surname'           => 'required|max:255',
-            'car_model'         => 'required|max:255',
-            'vehicle_plate'     => 'required|max:255',
-            'identity_number'   => 'required|max:255',
-            'passport_number'   => 'required|max:255',
+            'station_id'        => 'required|integer',
+            'password'          => 'required|min:6|max:255',
         ]);
 
         User::create( [
             'name'              =>  $request->name,
             'surname'           =>  $request->surname,
             'email'             =>  $request->email,
-            'age'               =>  $request->age,
-            'identity_number'   =>  $request->identity_number,
-            'passport_number'   =>  $request->passport_number,
-            'car_model'         =>  $request->car_model,
-            'vehicle_plate'     =>  $request->vehicle_plate,
+            'station_id'        =>  $request->station_id,
             'password'          =>  bcrypt('password'),
+            'password_show'     =>  $request->password,
+            'role'              =>  2
         ] );
 
         return redirect('/admin/users');
@@ -83,7 +80,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        $admin = User::with("stations")->findOrFail($id);
+        $data = array(
+            'result' => $admin,
+            "stations" => Station::all(),
+        );
+        return view('user.edit', compact("data"));
     }
 
     /**
@@ -95,7 +97,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name'              => 'required|max:255',
+            'email'             => $user->email == $request->email ? 'required|max:255' : 'required|max:255|unique:users,email',
+            'surname'           => 'required|max:255',
+            'station_id'        => 'required|integer',
+            'password'          => 'required|min:6|max:255',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->surname = $request->surname;
+        $user->station_id = $request->station_id;
+        $user->password = bcrypt('password');
+        $user->password_show = $request->password;
+        $user->save();
+
+       return redirect("/admin/users");
     }
 
     /**

@@ -100,14 +100,34 @@
 
                     <li class="devider"></li>
 
-                    <li><a href="/admin/users" class="waves-effect"><i class="mdi mdi-account fa-fw"></i><span
-                                class="hide-menu">Users</span></a></li>
-                    <li><a href="/admin/fuel" class="waves-effect"><i class="mdi mdi-gauge fa-fw"></i><span
-                                class="hide-menu">Gas Station Data</span></a></li>
-                    <li><a href="/admin/bonus" class="waves-effect"><i class="mdi mdi-auto-fix fa-fw"></i><span
-                                class="hide-menu">Bonus</span></a></li>
-                    <li><a href="/admin/bonus" class="waves-effect"><i class="mdi mdi-repeat fa-fw"></i><span
-                                class="hide-menu"> Redeem Bonus</span></a></li>
+                    <li>
+                        <a href="/admin/users" class="waves-effect">
+                            <i class="mdi mdi-account fa-fw"></i>
+                            <span class="hide-menu">Admins</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/stations" class="waves-effect">
+                            <i class="mdi mdi-gauge fa-fw"></i>
+                            <span class="hide-menu">Gas Stations</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/dispensers" class="waves-effect">
+                            <i class="mdi mdi-calculator fa-fw"></i>
+                            <span class="hide-menu"> Dispensers </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/clients" class="waves-effect">
+                            <i class="mdi mdi-human fa-fw"></i>
+                            <span class="hide-menu">Clients</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

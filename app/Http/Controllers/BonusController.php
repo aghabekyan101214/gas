@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Dispenser;
+use App\Fuel;
 
 class BonusController extends Controller
 {
@@ -32,9 +34,28 @@ class BonusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $dispenser = Dispenser::withCount(["fuels"])->where("identificator", $request->identificator)->first();
+        $rows = isset($dispenser->fuels_count) ? $dispenser->fuels_count : 0;
+//        $this->set($request, $rows);
+        $dispenser = Dispenser::with(["fuels" => function($query) {
+            $query->orderBy("id", "desc")->first();
+        }])->where("identificator", $request->identificator)->first();
+        dd($dispenser->fuels[0]->id);
+    }
+
+    private function set(Request $request, $oldDbRows, $currentDbRows = null, $returnData = null)
+    {
+        if($oldDbRows < $currentDbRows) {
+            return $returnData;
+        }
+
+        $dispenser = Dispenser::withCount(["fuels"])->where("identificator", $request->identificator)->first();
+        $rows = isset($dispenser->fuels_count) ? $dispenser->fuels_count : 0;
+        sleep(2);
+        $this->set($request, $oldDbRows, $rows);
     }
 
     /**

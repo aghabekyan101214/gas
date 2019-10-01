@@ -4,16 +4,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-info">
-                <div class="panel-heading"> Add New Admin</div>
+                <div class="panel-heading"> Edit The Gas Station</div>
                 <div class="panel-wrapper collapse in" aria-expanded="true">
                     <div class="panel-body">
-                        <form action="/admin/users" method="post" class="form-horizontal form-bordered">
+                        <form action="/admin/dispenser/{{ $dispenser->id }}" method="post" class="form-horizontal form-bordered">
+                            @method("PUT")
                             @csrf
                             <div class="form-body">
+
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Name</label>
                                     <div class="col-md-9">
-                                        <input type="text" placeholder="Name" value="{{ old("name") }}" required class="form-control" name="name">
+                                        <input type="text" placeholder="Name" value="{{ $dispenser->name }}" required class="form-control" name="name">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -21,20 +23,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Surname</label>
+                                    <label class="control-label col-md-2">Identificator</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ old("surname") }}" placeholder="Surname" required class="form-control" name="surname">
-                                        @error('surname')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" placeholder="Email" value="{{ old("email") }}" required class="form-control" name="email">
-                                        @error('email')
+                                        <input type="text" placeholder="Identificator" value="{{ old("identificator") }}" required class="form-control" name="identificator">
+                                        @error('identificator')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -45,21 +37,11 @@
                                     <div class="col-md-9">
                                         <select name="station_id" class="form-control" required id="">
                                             <option value="">Select Station</option>
-                                            @foreach($data['stations'] as $station)
-                                                <option @if(old('station_id') == $station->id) {{ 'selected' }} @endif value="{{ $station->id }}">{{ $station->name }}</option>
+                                            @foreach($data['stations'] as $dispenser)
+                                                <option @if(old('station_id') == $dispenser->id) {{ 'selected' }} @endif value="{{ $dispenser->id }}">{{ $dispenser->name }}</option>
                                             @endForeach
                                         </select>
                                         @error('station_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Password</label>
-                                    <div class="col-md-9">
-                                        <input type="text" placeholder="Password" value="{{ old("password") }}" required class="form-control" name="password">
-                                        @error('password')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -71,7 +53,7 @@
                                             <div class="row">
                                                 <div class="col-md-offset-11 col-md-9">
                                                     <button type="submit" class="btn btn-success"><i
-                                                            class="fa fa-check"></i>
+                                                                class="fa fa-check"></i>
                                                         Submit
                                                     </button>
                                                 </div>

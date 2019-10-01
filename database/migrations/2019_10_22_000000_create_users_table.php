@@ -18,13 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email')->unique();
-            $table->string('age');
-            $table->string('identity_number')->unique();
             $table->integer('role')->default(1);
-            $table->string('passport_number');
-            $table->string('car_model');
-            $table->string('vehicle_plate');
             $table->string('password');
+            $table->string('password_show');
+            $table->unsignedBigInteger('station_id')->nullable();
+            $table->foreign("station_id")->references("id")->on("stations")->onUpdate("cascade")->onDelete("cascade");
             $table->rememberToken();
             $table->timestamps();
         });
