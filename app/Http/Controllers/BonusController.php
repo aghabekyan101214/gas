@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Dispenser;
 use App\Fuel;
+use App\Client;
+use Illuminate\Support\Facades\DB;
+use App\Bonus;
 
 class BonusController extends Controller
 {
+
+    const BONUS_PERCENT = 2;
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +48,22 @@ class BonusController extends Controller
         $dispenser = Dispenser::with(["fuels" => function($query) {
             $query->orderBy("id", "desc")->first();
         }])->where("identificator", $request->identificator)->first();
-        dd($dispenser->fuels[0]->id);
+        $client = Client::where("qr", $request->qr)->first();
+
+        DB::beginTransaction();
+
+        $fuel = Fuel::find($dispenser->fuels[0]->id);
+        $fuel->client_id = $client->id;
+        $fuel->save();
+
+        $bonus = new Bonus();
+        $bonus->fuel_id = $fuel->id;
+        $bonus->bonus = ($fuel->liter * self::BONUS_PERCENT) / 100;
+        $bonus->save();
+
+        $client->bonus = $client->bonus + $bonus->bonus;
+        $client->save();
+        DB::commit();
     }
 
     private function set(Request $request, $oldDbRows, $currentDbRows = null, $returnData = null)
