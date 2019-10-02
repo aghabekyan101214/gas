@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fuel;
 use Illuminate\Http\Request;
 
 class FuelController extends Controller
@@ -13,8 +14,10 @@ class FuelController extends Controller
      */
     public function index()
     {
-        $data["title"] = "Fuel";
-        return view('Fuel/index', compact("data"));
+        $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
+            $query->with("stations");
+        }])->orderBy("id", "DESC")->paginate(50);
+        return view('Fuel/index', compact("fuels"));
     }
 
     /**

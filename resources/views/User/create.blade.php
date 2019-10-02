@@ -43,10 +43,10 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Select Gas Station</label>
                                     <div class="col-md-9">
-                                        <select name="station_id" class="form-control" required id="">
+                                        <select name="station_id[]" class="form-control select2" multiple="multiple" required id="">
                                             <option value="">Select Station</option>
                                             @foreach($data['stations'] as $station)
-                                                <option @if(old('station_id') == $station->id) {{ 'selected' }} @endif value="{{ $station->id }}">{{ $station->name }}</option>
+                                                <option value="{{ $station->id }}">{{ $station->name }}</option>
                                             @endForeach
                                         </select>
                                         @error('station_id')

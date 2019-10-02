@@ -76,7 +76,8 @@ class DispenserController extends Controller
      */
     public function edit(Dispenser $dispenser)
     {
-        return view("dispensers.edit", compact("dispenser"));
+        $stations = Station::all();
+        return view("dispensers.edit", compact("dispenser", "stations"));
     }
 
     /**
@@ -88,7 +89,18 @@ class DispenserController extends Controller
      */
     public function update(Request $request, Dispenser $dispenser)
     {
-        //
+        $request->validate([
+            'name'          => 'required|max:100',
+            'identificator' => $dispenser->identificator == $request->identificator ? 'required' : 'required|unique:dispensers,identificator',
+            'station_id'    => 'required|integer'
+        ]);
+
+        $dispenser->name = $request->name;
+        $dispenser->identificator = $request->identificator;
+        $dispenser->station_id = $request->station_id;
+        $dispenser->save();
+
+        return redirect("admin/dispensers");
     }
 
     /**

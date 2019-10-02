@@ -30,6 +30,6 @@ class User extends Authenticatable
 
     public function stations()
     {
-        return $this->belongsTo("App\Station", "station_id");
+        return $this->belongsToMany("App\Station", "admins_stations", "user_id", "station_id");
     }
 }

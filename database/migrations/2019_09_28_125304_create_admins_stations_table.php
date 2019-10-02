@@ -15,6 +15,10 @@ class CreateAdminsStationsTable extends Migration
     {
         Schema::create('admins_stations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("station_id");
+            $table->foreign("station_id")->references("id")->on("stations")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

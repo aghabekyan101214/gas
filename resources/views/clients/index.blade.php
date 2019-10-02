@@ -16,6 +16,7 @@
                     <th>Car</th>
                     <th>License Plate</th>
                     <th>QR</th>
+                    <th>Bonus</th>
                     <th>Created</th>
                     <th>Options</th>
                 </tr>
@@ -30,6 +31,7 @@
                         <td>{{ $value->car }}</td>
                         <td>{{ $value->license_plate }}</td>
                         <td>{{ $value->qr }}</td>
+                        <td>{{ $value->bonus }}</td>
                         <td>{{ $value->created_at }}</td>
                         <td>
                             <a href="/admin/clients/{{$value->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-circle tooltip-primary">

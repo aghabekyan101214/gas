@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('files', 'FileReadController@start');
+Route::get('sync', 'SyncController@start');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function(){
     Route::get('/', 'HomeController@index');
@@ -25,6 +26,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function(){
     Route::resource('stations', 'StationController')->middleware("checkRole");
     Route::resource('clients', 'ClientController');
     Route::resource('dispensers', 'DispenserController');
-    Route::resource('fuel', 'FuelController');
+    Route::resource('fuels', 'FuelController');
 });
 Route::resource('bonus', 'BonusController');

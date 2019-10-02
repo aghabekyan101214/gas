@@ -14,7 +14,7 @@
                     <th>Name</th>
                     <th>Surname</th>
                     <th>Email</th>
-                    <th>Gas Station</th>
+                    <th>Gas Stations</th>
                     <th>Password</th>
                     <th>Created</th>
                     <th>Options</th>
@@ -27,7 +27,11 @@
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->surname }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->stations->name }}</td>
+                        <td>
+                            @foreach($value->stations as $station)
+                                <p>{{ $station->name }}</p>
+                            @endforeach
+                        </td>
                         <td> <input type="password" style="text-align: center; background: transparent; border: none" disabled value="{{ $value->password_show }}"> <a class="eye" href="javascript:void(0)" style="float: right;"><i class="fas fa-eye"></i></a></td>
                         <td>{{$value->created_at}}</td>
 

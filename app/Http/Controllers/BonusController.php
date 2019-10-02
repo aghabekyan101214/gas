@@ -44,7 +44,7 @@ class BonusController extends Controller
     {
         $dispenser = Dispenser::withCount(["fuels"])->where("identificator", $request->identificator)->first();
         $rows = isset($dispenser->fuels_count) ? $dispenser->fuels_count : 0;
-//        $this->set($request, $rows);
+        $this->set($request, $rows);
         $dispenser = Dispenser::with(["fuels" => function($query) {
             $query->orderBy("id", "desc")->first();
         }])->where("identificator", $request->identificator)->first();
@@ -52,18 +52,25 @@ class BonusController extends Controller
 
         DB::beginTransaction();
 
+//        add client to current filling
+
         $fuel = Fuel::find($dispenser->fuels[0]->id);
         $fuel->client_id = $client->id;
         $fuel->save();
+
+//        give the client bonus
 
         $bonus = new Bonus();
         $bonus->fuel_id = $fuel->id;
         $bonus->bonus = ($fuel->liter * self::BONUS_PERCENT) / 100;
         $bonus->save();
 
+//        keep the data in clients table
+
         $client->bonus = $client->bonus + $bonus->bonus;
         $client->save();
         DB::commit();
+        return 1;
     }
 
     private function set(Request $request, $oldDbRows, $currentDbRows = null, $returnData = null)

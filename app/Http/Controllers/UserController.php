@@ -7,7 +7,6 @@ Use App\User;
 Use Auth;
 use App\Station;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -44,20 +43,17 @@ class UserController extends Controller
             'name'              => 'required|max:255',
             'email'             => 'required|unique:users,email|max:255',
             'surname'           => 'required|max:255',
-            'station_id'        => 'required|integer',
             'password'          => 'required|min:6|max:255',
         ]);
-
-        User::create( [
-            'name'              =>  $request->name,
-            'surname'           =>  $request->surname,
-            'email'             =>  $request->email,
-            'station_id'        =>  $request->station_id,
-            'password'          =>  bcrypt('password'),
-            'password_show'     =>  $request->password,
-            'role'              =>  2
-        ] );
-
+        $user = new User();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->password_show = $request->password;
+        $user->role = 2;
+        $user->save();
+        $user->stations()->sync($request->station_id);
         return redirect('/admin/users');
     }
 
@@ -81,9 +77,15 @@ class UserController extends Controller
     public function edit($id)
     {
         $admin = User::with("stations")->findOrFail($id);
+        $chosen = DB::table('admins_stations')->select("station_id")->where("user_id", $id)->get();
+        $chosenIds = [];
+        foreach ($chosen as $c) {
+            $chosenIds[] = $c->station_id;
+        }
         $data = array(
             'result' => $admin,
             "stations" => Station::all(),
+            "chosen" => $chosenIds
         );
         return view('user.edit', compact("data"));
     }
@@ -101,21 +103,20 @@ class UserController extends Controller
 
         $request->validate([
             'name'              => 'required|max:255',
-            'email'             => $user->email == $request->email ? 'required|max:255' : 'required|max:255|unique:users,email',
+            'email'             => $user->email == $request->email ? 'required|max:255' : 'required|unique:users,email|max:255',
             'surname'           => 'required|max:255',
-            'station_id'        => 'required|integer',
             'password'          => 'required|min:6|max:255',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->surname = $request->surname;
-        $user->station_id = $request->station_id;
         $user->password = bcrypt('password');
         $user->password_show = $request->password;
         $user->save();
-
-       return redirect("/admin/users");
+        $user->stations()->detach();
+        $user->stations()->sync($request->station_id);
+        return redirect("/admin/users");
     }
 
     /**

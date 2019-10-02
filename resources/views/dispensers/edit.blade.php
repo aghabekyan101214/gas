@@ -7,7 +7,7 @@
                 <div class="panel-heading"> Edit The Gas Station</div>
                 <div class="panel-wrapper collapse in" aria-expanded="true">
                     <div class="panel-body">
-                        <form action="/admin/dispenser/{{ $dispenser->id }}" method="post" class="form-horizontal form-bordered">
+                        <form action="/admin/dispensers/{{ $dispenser->id }}" method="post" class="form-horizontal form-bordered">
                             @method("PUT")
                             @csrf
                             <div class="form-body">
@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Identificator</label>
                                     <div class="col-md-9">
-                                        <input type="text" placeholder="Identificator" value="{{ old("identificator") }}" required class="form-control" name="identificator">
+                                        <input type="text" placeholder="Identificator" value="{{ $dispenser->identificator }}" required class="form-control" name="identificator">
                                         @error('identificator')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -37,8 +37,8 @@
                                     <div class="col-md-9">
                                         <select name="station_id" class="form-control" required id="">
                                             <option value="">Select Station</option>
-                                            @foreach($data['stations'] as $dispenser)
-                                                <option @if(old('station_id') == $dispenser->id) {{ 'selected' }} @endif value="{{ $dispenser->id }}">{{ $dispenser->name }}</option>
+                                            @foreach($stations as $station)
+                                                <option @if($dispenser->station_id == $station->id) {{ 'selected' }} @endif value="{{ $station->id }}">{{ $station->name }}</option>
                                             @endForeach
                                         </select>
                                         @error('station_id')

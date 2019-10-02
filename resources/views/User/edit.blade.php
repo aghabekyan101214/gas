@@ -44,10 +44,10 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Select Gas Station</label>
                                     <div class="col-md-9">
-                                        <select name="station_id" class="form-control" required id="">
+                                        <select name="station_id[]" class="form-control select2" required multiple="multiple" id="">
                                             <option value="">Select Station</option>
                                             @foreach($data['stations'] as $station)
-                                                <option @if($data['result']->stations->id == $station->id) {{ 'selected' }} @endif value="{{ $station->id }}">{{ $station->name }}</option>
+                                                <option @if(null != $data['chosen'] && in_array($station->id, $data['chosen'])) {{ 'selected' }} @endif value="{{ $station->id }}">{{ $station->name }}</option>
                                             @endForeach
                                         </select>
                                         @error('station_id')

@@ -31,6 +31,8 @@
     {{--data table--}}
     <link href="{{asset('assets/plugins/bower_components/datatables/media/css/dataTables.bootstrap.css')}}"
           rel="stylesheet" type="text/css"/>
+    <!-- Select2 Css -->
+    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet" />
 
 </head>
 <body class="fix-header">
@@ -122,6 +124,13 @@
                     </li>
 
                     <li>
+                        <a href="/admin/fuels" class="waves-effect">
+                            <i class="mdi mdi-format-color-fill fa-fw"></i>
+                            <span class="hide-menu"> Fuels </span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="/admin/clients" class="waves-effect">
                             <i class="mdi mdi-human fa-fw"></i>
                             <span class="hide-menu">Clients</span>
@@ -157,7 +166,11 @@
 <script>
     $(function () {
         $('#myTable').DataTable();
-    })
+    });
+
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
 </script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -172,6 +185,8 @@
 <script src="{{asset('assets/js/custom.min.js')}}"></script>
 <!--Style Switcher -->
 <script src="{{asset('assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+<!--Select2-->
+<script src="{{ asset("assets/select2/dist/js/select2.min.js") }}"></script>
 </body>
 
 </html>

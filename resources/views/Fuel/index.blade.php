@@ -4,25 +4,42 @@
     <div class="white-box">
         <h3 class="box-title m-b-10">Station data</h3>
         <div class="table-responsive">
-            <table id="myTable" class="table table-striped">
+            <table id="table" class="table table-striped">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Number</th>
+                    <th>Station</th>
+                    <th>Dispenser</th>
                     <th>Price</th>
+                    <th>Liter</th>
+                    <th>Bonus</th>
+                    <th>Client</th>
                     <th>Date</th>
-                    <th>Option</th>
                 </tr>
                 </thead>
                 <tbody>
-{{--                @foreach($data['users'] as $key => $value)--}}
-                    <tr>
-{{--                        <td>{{$key+1}}</td>--}}
-
-                    </tr>
-{{--                @endforeach--}}
+                    @foreach($fuels as $bin => $fuel)
+                        <tr>
+                            <td>{{ $fuel->id }}</td>
+                            <td>{{ $fuel->dispensers->stations->name  }}</td>
+                            <td>{{ $fuel->dispensers->name }}</td>
+                            <td>{{ $fuel->price }}</td>
+                            <td>{{ $fuel->liter }}</td>
+                            <td>@if(isset($fuel->bonuses->bonus)) {{ $fuel->bonuses->bonus }} @endif</td>
+                            <td>@if(isset($fuel->clients->name)) {{ $fuel->clients->name }} @endif</td>
+                            <td>{{ $fuel->created_at }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+            {{ $fuels->links() }}
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable( {
+                "paging":   false,
+            } );
+        } );
+    </script>
 @endsection

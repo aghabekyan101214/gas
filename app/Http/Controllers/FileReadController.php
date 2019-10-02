@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Dispenser;
 use Illuminate\Database\Eloquent\Builder;
 use App\Fuel;
+use mysql_xdevapi\Exception;
 
 class FileReadController extends Controller
 {
@@ -39,8 +40,10 @@ class FileReadController extends Controller
         $myFile = fopen($filePath, "r");
         $data = fread($myFile, filesize($filePath));
         fclose($myFile);
-        if(null != $data || $data) $this->insert($data);
-        unlink($filePath);
+        if(null != $data || $data) {
+            $insert = $this->insert($data);
+            if($insert) unlink($filePath);
+        }
     }
 
     private function insert($data)
@@ -53,7 +56,7 @@ class FileReadController extends Controller
                 "liter" => $data[1],
                 "price" => $data[2]
             ]);
-            $fuel->save();
+            return $fuel->save();
         }
     }
 }
