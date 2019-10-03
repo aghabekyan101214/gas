@@ -51,6 +51,7 @@ class FileReadController extends Controller
         $data = explode(" ", $data);
         if(isset($data[0])) {
             $dispenser = Dispenser::where("identificator", $data[0])->first();
+            if(null == $dispenser) return;
             $fuel = new Fuel([
                 "dispenser_id" => $dispenser->id,
                 "liter" => $data[1],

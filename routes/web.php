@@ -19,13 +19,15 @@ Auth::routes();
 
 Route::get('files', 'FileReadController@start');
 Route::get('sync', 'SyncController@start');
-
+Route::get("client-side", "ClientSideController@index");
+Route::post("get-client", "ClientSideController@getClientByQr");
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function(){
     Route::get('/', 'HomeController@index');
     Route::resource('users', 'UserController')->middleware("checkRole");
     Route::resource('stations', 'StationController')->middleware("checkRole");
+    Route::resource('dispensers', 'DispenserController')->middleware("checkRole");
+    Route::resource('static-data', 'StaticController')->middleware("checkRole");
     Route::resource('clients', 'ClientController');
-    Route::resource('dispensers', 'DispenserController');
     Route::resource('fuels', 'FuelController');
 });
 Route::resource('bonus', 'BonusController');

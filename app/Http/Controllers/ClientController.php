@@ -15,7 +15,7 @@ class ClientController extends Controller
     public function index()
     {
         $data = array(
-            "clients" => Client::all()
+            "clients" => Client::orderBy("id", "desc")->get(),
         );
         return view("clients.index", compact("data"));
     }
@@ -114,4 +114,5 @@ class ClientController extends Controller
     {
         //
     }
+
 }

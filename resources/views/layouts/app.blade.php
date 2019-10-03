@@ -102,6 +102,8 @@
 
                     <li class="devider"></li>
 
+                    @if(Auth::user()->role == 1)
+
                     <li>
                         <a href="/admin/users" class="waves-effect">
                             <i class="mdi mdi-account fa-fw"></i>
@@ -122,6 +124,15 @@
                             <span class="hide-menu"> Dispensers </span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="/admin/static-data" class="waves-effect">
+                            <i class="mdi mdi-human fa-fw"></i>
+                            <span class="hide-menu">Static Data</span>
+                        </a>
+                    </li>
+
+                    @endif
 
                     <li>
                         <a href="/admin/fuels" class="waves-effect">

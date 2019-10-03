@@ -8,11 +8,21 @@ use App\Fuel;
 use App\Client;
 use Illuminate\Support\Facades\DB;
 use App\Bonus;
+use App\StaticData;
 
 class BonusController extends Controller
 {
 
-    const BONUS_PERCENT = 2;
+    private $bonus_percent = 0;
+
+    public function __construct()
+    {
+        $staticData = StaticData::first();
+        if(null != $staticData) {
+            $this->bonus_percent = $staticData->bonus;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,7 +72,7 @@ class BonusController extends Controller
 
         $bonus = new Bonus();
         $bonus->fuel_id = $fuel->id;
-        $bonus->bonus = ($fuel->liter * self::BONUS_PERCENT) / 100;
+        $bonus->bonus = ($fuel->liter * $this->bonus_percent) / 100;
         $bonus->save();
 
 //        keep the data in clients table
@@ -70,8 +80,13 @@ class BonusController extends Controller
         $client->bonus = $client->bonus + $bonus->bonus;
         $client->save();
         DB::commit();
-        return 1;
+        $data = array(
+            "bonus" => number_format($client->bonus, 2)
+        );
+        return $data;
     }
+
+//    Wait till the new fuel will be inserted in db
 
     private function set(Request $request, $oldDbRows, $currentDbRows = null, $returnData = null)
     {
@@ -85,48 +100,8 @@ class BonusController extends Controller
         $this->set($request, $oldDbRows, $rows);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function redeem(Request $request)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

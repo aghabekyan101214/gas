@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnQrToClients extends Migration
+class CreateStaticsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddColumnQrToClients extends Migration
      */
     public function up()
     {
-        Schema::table('clients', function (Blueprint $table) {
-            $table->string("qr", 500)->index();
+        Schema::create('statics', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->float("bonus");
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddColumnQrToClients extends Migration
      */
     public function down()
     {
-        Schema::table('clients', function (Blueprint $table) {
-            $table->text("qr");
-        });
+        Schema::dropIfExists('statics');
     }
 }
