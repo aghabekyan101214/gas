@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('role')->default(1);
             $table->string('password');
             $table->string('password_show');
+            $table->unsignedSmallInteger("sync")->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

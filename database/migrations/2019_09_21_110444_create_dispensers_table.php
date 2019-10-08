@@ -19,6 +19,7 @@ class CreateDispensersTable extends Migration
             $table->string("identificator", 255);
             $table->unsignedBigInteger("station_id");
             $table->foreign("station_id")->references("id")->on("stations")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();
         });
     }

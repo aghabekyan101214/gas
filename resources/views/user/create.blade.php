@@ -56,6 +56,21 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Select The Pages, Which New Admin Will Have Access.</label>
+                                    <div class="col-md-9">
+                                        <select name="pages[]" class="form-control select2" multiple="multiple" required id="">
+                                            <option value="">Select Pages</option>
+                                            @foreach($data['pages'] as $bin => $pages)
+                                                <option value="{{ $pages->id }}">{{ $pages->name }}</option>
+                                            @endForeach
+                                        </select>
+                                        @error('station_id')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-md-2">Password</label>
                                     <div class="col-md-9">
                                         <input type="text" placeholder="Password" value="{{ old("password") }}" required class="form-control" name="password">

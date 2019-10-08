@@ -16,6 +16,7 @@ class CreateStaticsTable extends Migration
         Schema::create('statics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->float("bonus");
+            $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();
         });
     }

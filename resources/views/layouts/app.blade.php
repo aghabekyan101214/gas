@@ -2,7 +2,6 @@
 
 </div>
 
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -101,52 +100,71 @@
                 <ul class="nav" id="side-menu">
 
                     <li class="devider"></li>
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 1])->first() != null || Auth::user()->role == 1 )
 
-                    @if(Auth::user()->role == 1)
-
-                    <li>
-                        <a href="/admin/users" class="waves-effect">
-                            <i class="mdi mdi-account fa-fw"></i>
-                            <span class="hide-menu">Admins</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/admin/stations" class="waves-effect">
-                            <i class="mdi mdi-gauge fa-fw"></i>
-                            <span class="hide-menu">Gas Stations</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/admin/dispensers" class="waves-effect">
-                            <i class="mdi mdi-calculator fa-fw"></i>
-                            <span class="hide-menu"> Dispensers </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/admin/static-data" class="waves-effect">
-                            <i class="mdi mdi-human fa-fw"></i>
-                            <span class="hide-menu">Static Data</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="/admin/users" class="waves-effect">
+                                <i class="mdi mdi-account fa-fw"></i>
+                                <span class="hide-menu">Admins</span>
+                            </a>
+                        </li>
 
                     @endif
 
-                    <li>
-                        <a href="/admin/fuels" class="waves-effect">
-                            <i class="mdi mdi-format-color-fill fa-fw"></i>
-                            <span class="hide-menu"> Fuels </span>
-                        </a>
-                    </li>
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 2])->first() != null || Auth::user()->role == 1 )
 
-                    <li>
-                        <a href="/admin/clients" class="waves-effect">
-                            <i class="mdi mdi-human fa-fw"></i>
-                            <span class="hide-menu">Clients</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="/admin/stations" class="waves-effect">
+                                <i class="mdi mdi-gauge fa-fw"></i>
+                                <span class="hide-menu">Gas Stations</span>
+                            </a>
+                        </li>
+
+                    @endif
+
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 3])->first() != null || Auth::user()->role == 1 )
+
+                        <li>
+                            <a href="/admin/dispensers" class="waves-effect">
+                                <i class="mdi mdi-calculator fa-fw"></i>
+                                <span class="hide-menu"> Dispensers </span>
+                            </a>
+                        </li>
+
+                    @endif
+
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 4])->first() != null || Auth::user()->role == 1 )
+
+                        <li>
+                            <a href="/admin/static-data" class="waves-effect">
+                                <i class="mdi mdi-human fa-fw"></i>
+                                <span class="hide-menu">Static Data</span>
+                            </a>
+                        </li>
+
+                    @endif
+
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 5])->first() != null || Auth::user()->role == 1 )
+
+                        <li>
+                            <a href="/admin/fuels" class="waves-effect">
+                                <i class="mdi mdi-format-color-fill fa-fw"></i>
+                                <span class="hide-menu"> Fuels </span>
+                            </a>
+                        </li>
+
+                    @endif
+
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 6])->first() != null || Auth::user()->role == 1 )
+
+                        <li>
+                            <a href="/admin/clients" class="waves-effect">
+                                <i class="mdi mdi-human fa-fw"></i>
+                                <span class="hide-menu">Clients</span>
+                            </a>
+                        </li>
+
+                    @endif
 
                 </ul>
             </div>

@@ -36,11 +36,13 @@ class FileReadCron extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle($count = null)
     {
-        \Log::info("Cron is working fine!");
+        if($count == 12) return;
+        \Log::info("Cron is working fine! + $count");
         FileReadController::start();
         sleep(5);
-        $this->handle();
+        $count = $count == null ? 1 : $count + 1;
+        $this->handle($count);
     }
 }

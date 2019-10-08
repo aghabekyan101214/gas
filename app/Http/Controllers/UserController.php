@@ -7,6 +7,7 @@ Use App\User;
 Use Auth;
 use App\Station;
 use Illuminate\Support\Facades\DB;
+use App\Page;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $data["users"] = User::with("stations")->where('role', '!=', Auth::user()->role)->get();
-        return view('User/index', compact("data"));
+        return view('user/index', compact("data"));
     }
 
     /**
@@ -27,8 +28,9 @@ class UserController extends Controller
     {
         $data = array(
             "stations" => Station::all(),
+            "pages" => Page::all(),
         );
-        return view('User/create', compact("data"));
+        return view('user/create', compact("data"));
     }
 
     /**
@@ -45,6 +47,9 @@ class UserController extends Controller
             'surname'           => 'required|max:255',
             'password'          => 'required|min:6|max:255',
         ]);
+
+        DB::beginTransaction();
+
         $user = new User();
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -54,6 +59,10 @@ class UserController extends Controller
         $user->role = 2;
         $user->save();
         $user->stations()->sync($request->station_id);
+        $user->pages()->sync($request->pages);
+
+        DB::commit();
+
         return redirect('/admin/users');
     }
 
@@ -78,14 +87,21 @@ class UserController extends Controller
     {
         $admin = User::with("stations")->findOrFail($id);
         $chosen = DB::table('admins_stations')->select("station_id")->where("user_id", $id)->get();
+        $chosenPagesDb = DB::table('admins_pages')->select("page_id")->where("user_id", $id)->get();
         $chosenIds = [];
+        $chosenPages = [];
         foreach ($chosen as $c) {
             $chosenIds[] = $c->station_id;
+        }
+        foreach ($chosenPagesDb as $c) {
+            $chosenPages[] = $c->page_id;
         }
         $data = array(
             'result' => $admin,
             "stations" => Station::all(),
-            "chosen" => $chosenIds
+            "chosen" => $chosenIds,
+            "pages" => Page::all(),
+            "chosenPages" => $chosenPages
         );
         return view('user.edit', compact("data"));
     }
@@ -108,14 +124,21 @@ class UserController extends Controller
             'password'          => 'required|min:6|max:255',
         ]);
 
+        DB::beginTransaction();
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->surname = $request->surname;
-        $user->password = bcrypt('password');
+        $user->password = bcrypt($request->password);
         $user->password_show = $request->password;
         $user->save();
         $user->stations()->detach();
+        $user->pages()->detach();
         $user->stations()->sync($request->station_id);
+        $user->pages()->sync($request->pages);
+
+        DB::commit();
+
         return redirect("/admin/users");
     }
 

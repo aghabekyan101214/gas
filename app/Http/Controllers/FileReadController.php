@@ -20,6 +20,7 @@ class FileReadController extends Controller
     public static function start($count = 1)
     {
         $path = public_path("info/station$count/");
+        if($count > 10) return;
         if(!is_dir($path)) {
             return;
         }
