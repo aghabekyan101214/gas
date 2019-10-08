@@ -13,5 +13,8 @@
         <div class="form-group">
             <input type="number" step="any" class="redeem-value form-control" value="{{ $client->bonus }}">
         </div>
+        <div class="col-md-12" style="text-align: right">
+            <button class="btn btn-success" onclick="redeem({{ $client->bonus }})">Օգտագործել</button>
+        </div>
     </div>
 </div>

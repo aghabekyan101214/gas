@@ -15,7 +15,6 @@ class AddColumnBonusToClients extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
             $table->unsignedBigInteger("fuel_id");
-            $table->foreign("fuel_id")->references("id")->on("fuels")->onDelete("cascade")->onUpdate("cascade");
             $table->float("bonus")->default(0);
         });
     }

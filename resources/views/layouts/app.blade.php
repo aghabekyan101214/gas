@@ -137,7 +137,7 @@
 
                         <li>
                             <a href="/admin/static-data" class="waves-effect">
-                                <i class="mdi mdi-human fa-fw"></i>
+                                <i class="mdi mdi-information fa-fw"></i>
                                 <span class="hide-menu">Static Data</span>
                             </a>
                         </li>

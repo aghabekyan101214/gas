@@ -59,7 +59,7 @@
                 if($("#bonus").css("display") == "block") return;
                 $(".qr").focus();
             });
-            $(document).on("keydown", ".redeem-value", function (e) {
+            $(document).on("keyup", ".redeem-value", function (e) {
                 e.stopPropagation();
                 let max = $(".current-bonus").val();
                 if($(this).val() > max) {
@@ -68,13 +68,13 @@
             })
             $(document).on("keydown", ".redeem-value", function (e) {
                 e.stopPropagation();
-            })
+            });
             $("#bonus").click(function(e){
                 e.stopPropagation();
-            })
+            });
             $(".modal").click(function (e) {
                 e.preventDefault();
-            })
+            });
         });
         function getBonus(){
             $(".preloader").css("display", "block");
@@ -92,6 +92,24 @@
         function redeemBonus(){
             $(".bonus-section").css("display", "none");
             $(".redeem-section").css("display", "block");
+        }
+
+        function redeem(max){
+            let liter = $(".redeem-value").val();
+            if(liter > max || liter <= 0) {
+                liter = max;
+            } else if(liter == 0) {
+                return;
+            }
+            $(".preloader").css("display", "block");
+            $.post("/redeem", {qr: window.qr, identificator: window.id, liter: liter}).done(function( data ) {
+                if(data.bonus) {
+                    alert("Շնորհավոր");
+                } else if(data == 0) {
+                    alert("Նշված քանակը չի համապատասխանում հաճախորդի բոնուսին");
+                }
+                location.reload();
+            })
         }
     </script>
 @endsection

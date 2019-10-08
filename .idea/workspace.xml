@@ -3,25 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/FileReadCron.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/FileReadCron.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SyncController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SyncController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckRole.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_18_130005_create_bonuses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_29_130005_create_bonuses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_21_101209_create_clients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_21_101209_create_clients_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_21_110443_create_stations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_21_110443_create_stations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_21_110444_create_dispensers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_21_110444_create_dispensers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_27_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_27_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_28_104740_create_fuels_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_28_104740_create_fuels_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_03_112024_create_statics_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_03_112024_create_statics_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/User/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/User/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/User/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_01_135550_add_column_bonus_to_clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_01_135550_add_column_bonus_to_clients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clientSide/getClient.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clientSide/getClient.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clientSide/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clientSide/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -229,7 +216,7 @@
       <workItem from="1569999003315" duration="18928000" />
       <workItem from="1570079143804" duration="13172000" />
       <workItem from="1570097417529" duration="12312000" />
-      <workItem from="1570512015226" duration="9572000" />
+      <workItem from="1570512015226" duration="18672000" />
     </task>
     <servers />
   </component>

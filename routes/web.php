@@ -31,3 +31,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', "checkRole"]], funct
     Route::resource('fuels', 'FuelController');
 });
 Route::resource('bonus', 'BonusController');
+Route::post("redeem", "BonusController@redeem");

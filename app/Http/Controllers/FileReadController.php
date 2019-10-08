@@ -55,8 +55,8 @@ class FileReadController extends Controller
             if(null == $dispenser) return;
             $fuel = new Fuel([
                 "dispenser_id" => $dispenser->id,
-                "liter" => $data[1],
-                "price" => $data[2]
+                "liter" => floatval($data[1]),
+                "price" => floatval($data[2])
             ]);
             return $fuel->save();
         }

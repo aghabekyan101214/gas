@@ -24,8 +24,9 @@ class SyncController extends Controller
 
     private static function syncFuels()
     {
-        $newUsers = self::$conn2->table("fuels")->where(["sync" => 0])->get();
+        $newFuels = self::$conn2->table("fuels")->where(["sync" => 0])->get();
         DB::beginTransaction();
+        dd($newUsers);
         if(null != $newUsers) {
             self::$conn->table("users")->insert();
         }

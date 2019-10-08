@@ -50,16 +50,16 @@ class BonusController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(Request $request, $redeem = null)
     {
         $dispenser = Dispenser::withCount(["fuels"])->where("identificator", $request->identificator)->first();
         $rows = isset($dispenser->fuels_count) ? $dispenser->fuels_count : 0;
+        $client = Client::where("qr", $request->qr)->first();
+        if($client->bonus < $request->liter) return 0;
         $this->set($request, $rows);
         $dispenser = Dispenser::with(["fuels" => function($query) {
             $query->orderBy("id", "desc")->first();
         }])->where("identificator", $request->identificator)->first();
-        $client = Client::where("qr", $request->qr)->first();
-
         DB::beginTransaction();
 
 //        add client to current filling
@@ -72,7 +72,7 @@ class BonusController extends Controller
 
         $bonus = new Bonus();
         $bonus->fuel_id = $fuel->id;
-        $bonus->bonus = ($fuel->liter * $this->bonus_percent) / 100;
+        $bonus->bonus = $redeem == null ? ($fuel->liter * $this->bonus_percent) / 100 : -$request->liter;
         $bonus->save();
 
 //        keep the data in clients table
@@ -102,6 +102,6 @@ class BonusController extends Controller
 
     public function redeem(Request $request)
     {
-
+        return $this->store($request, 1);
     }
 }
