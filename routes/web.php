@@ -21,8 +21,8 @@ Route::get('files', 'FileReadController@start');
 Route::get('sync', 'SyncController@start');
 Route::get("client-side", "ClientSideController@index");
 Route::post("get-client", "ClientSideController@getClientByQr");
+Route::get('/admin', 'HomeController@index');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', "checkRole"]], function(){
-    Route::get('/', 'HomeController@index');
     Route::resource('users', 'UserController');
     Route::resource('stations', 'StationController');
     Route::resource('dispensers', 'DispenserController');

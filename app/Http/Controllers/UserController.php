@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $data["users"] = User::with("stations")->where('role', '!=', Auth::user()->role)->get();
+        $data["users"] = User::with("stations")->where('role', '!=', Auth::user()->role)->where('role', '!=', 1)->get();
         return view('user/index', compact("data"));
     }
 
