@@ -15,7 +15,7 @@
                                     <label class="control-label col-md-2">Bonus Percent</label>
                                     <div class="col-md-9">
                                         <input type="file" class="form-control" name="file_up">
-                                        @error('bonus')
+                                        @error('file_up')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

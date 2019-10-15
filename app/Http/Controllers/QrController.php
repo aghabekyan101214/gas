@@ -51,6 +51,9 @@ class QrController extends Controller
 
     public function upload_file(Request $request)
     {
+        $request->validate([
+            'file_up' => 'required|mimes:txt'
+        ]);
         Storage::putFile('info/station1', new File($request->file_up));
         return view("upload");
     }
