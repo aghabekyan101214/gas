@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', "checkRole"]], funct
     Route::resource('static-data', 'StaticController');
     Route::resource('clients', 'ClientController');
     Route::resource('fuels', 'FuelController');
+    Route::get("generate-qr/{quantity}", "QrController@index");
 });
 Route::resource('bonus', 'BonusController');
 Route::post("redeem", "BonusController@redeem");

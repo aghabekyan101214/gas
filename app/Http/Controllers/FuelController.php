@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class FuelController extends Controller
 {
 
-    const PAGINATION = 1;
+    const PAGINATION = 100;
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +26,7 @@ class FuelController extends Controller
             $stations = Station::all();
             $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
                 $query->with("stations");
-            }])->orderBy("id", "DESC")->paginate(self::PAGINATION);
+            }])->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
         } else {
 //            else show the results, which have been assigned by super admin before
             $fuels = $this->getFuels()['fuels'];
@@ -40,7 +40,14 @@ class FuelController extends Controller
                     $query->whereIn("stations.id", [$request->station_id]);
                 });
             })->with(["bonuses", "clients"])
-                ->orderBy("id", "DESC")->paginate(self::PAGINATION);
+                ->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+        }
+
+        elseif(null != $request->dispenser_id) {
+            $fuels = Fuel::whereHas("dispensers", function($query) use ($request) {
+                $query->where("dispenser_id", $request->dispenser_id)->with("stations");
+            })->with(["bonuses", "clients"])
+                ->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
         }
 
         $dispensers = $this->getDispensers($request);
@@ -135,9 +142,18 @@ class FuelController extends Controller
 
     private function getDispensers(Request $request)
     {
-        if(null == $request->station_id) {
-            return Dispenser::all();
+        if(Auth::user()->role == 1) {
+            if(null == $request->station_id) {
+                return Dispenser::all();
+            }
+            return Dispenser::where("station_id", $request->station_id)->get();
+        } else {
+            if(null == $request->station_id) {
+                $station_ids = $this->getFuels()['stations'];
+                return Dispenser::whereIn("station_id", $station_ids)->get();
+            }
+            return Dispenser::where("station_id", $request->station_id)->get();
         }
-        return Dispenser::where("station_id", $request->station_id)->get();
+
     }
 }

@@ -7,7 +7,6 @@
             <table id="table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Station</th>
                     <th>Dispenser</th>
                     <th>Price</th>
@@ -16,41 +15,33 @@
                     <th>Client</th>
                     <th>Date</th>
                 </tr>
+                <tr>
+                    <td colspan="7">
+                        <form action="{{ url('admin/fuels') }}" class="filter">
+                            <div class="col-md-2">
+                                <select onchange="$('.filter').submit()" name="station_id" id="" class="form-control">
+                                    <option value="">All</option>
+                                    @foreach($stations as $s)
+                                        <option @if($request->station_id == $s->id) selected @endif value="{{ $s->id }}">{{ $s->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select onchange="$('.filter').submit()" name="dispenser_id" id="" class="form-control">
+                                    <option value="">All</option>
+                                    @foreach($dispensers as $d)
+                                        <option @if($request->dispenser_id == $d->id) selected @endif value="{{ $d->id }}">{{ $d->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
 
-                    </td>
-                    <td>
-                        <form action="/admin/fuels" class="filter">
-                            <select onchange="$('.filter').submit()" name="station_id" id="" class="form-control">
-                                <option value="">All</option>
-                                @foreach($stations as $s)
-                                    <option @if($request->station_id == $s->id) selected @endif value="{{ $s->id }}">{{ $s->name }}</option>
-                                @endforeach
-                            </select>
-                        </form>
-                    </td>
-                    <td>
-                        <form actiion="/admin/fuels" class="filter2">
-                            <select onchange="$('.filter2').submit()" name="dispenser_id" id="" class="form-control">
-                                <option value="">All</option>
-                                @foreach($dispensers as $d)
-                                    <option @if($request->dispenser_id == $d->id) selected @endif value="{{ $d->id }}">{{ $d->name }}</option>
-                                @endforeach
-                            </select>
-                        </form>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
                     @foreach($fuels as $bin => $fuel)
                         <tr>
-                            <td>{{ $fuel->id }}</td>
                             <td>{{ $fuel->dispensers->stations->name  }}</td>
                             <td>{{ $fuel->dispensers->name }}</td>
                             <td>{{ $fuel->price }}</td>
@@ -62,7 +53,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $fuels->links() }}
+            {{ $fuels->appends(request()->except('page'))->links() }}
         </div>
     </div>
     <script>

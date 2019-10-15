@@ -32,7 +32,8 @@
           rel="stylesheet" type="text/css"/>
     <!-- Select2 Css -->
     <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet" />
-
+    <!-- DateRangePicker css -->
+    <link href="{{ asset("assets/daterangepicker/daterangepicker.css") }}" rel="stylesheet">
 </head>
 <body class="fix-header">
 
@@ -201,6 +202,13 @@
         $('.select2').select2();
     });
 
+    // Daterange picker
+    $('.daterange-datepicker').daterangepicker({
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse'
+    });
+
 </script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -217,6 +225,8 @@
 <script src="{{asset('assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
 <!--Select2-->
 <script src="{{ asset("assets/select2/dist/js/select2.min.js") }}"></script>
+<!--DateRAngePicker Js-->
+<script src="{{ asset("assets/daterangepicker/daterangepicker.js") }}"></script>
 </body>
 
 </html>
