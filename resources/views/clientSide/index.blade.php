@@ -69,8 +69,8 @@
             });
             $(document).on("keyup", ".redeem-value", function (e) {
                 e.stopPropagation();
-                let max = $(".current-bonus").val();
-                if($(this).val() > max) {
+                let max = parseFloat($(".current-bonus").val());
+                if(parseFloat($(this).val()) > max) {
                     $(this).val(max);
                 }
             })
@@ -103,7 +103,8 @@
         }
 
         function redeem(max){
-            let liter = $(".redeem-value").val();
+            max = parseFloat(max);
+            let liter = parseFloat($(".redeem-value").val());
             if(liter > max || liter <= 0) {
                 liter = max;
             } else if(liter == 0) {
