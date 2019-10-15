@@ -30,6 +30,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', "checkRole"]], funct
     Route::resource('clients', 'ClientController');
     Route::resource('fuels', 'FuelController');
     Route::get("generate-qr/{quantity}", "QrController@index");
+    Route::get("upload", "QrController@upload");
+    Route::post("upload-file", "QrController@upload_file");
 });
 Route::resource('bonus', 'BonusController');
 Route::post("redeem", "BonusController@redeem");

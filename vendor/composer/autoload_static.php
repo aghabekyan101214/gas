@@ -517,6 +517,7 @@ class ComposerStaticInit2088e036061ddb9c6e43bf9bc92d944b
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Qr' => __DIR__ . '/../..' . '/app/Qr.php',
         'App\\StaticData' => __DIR__ . '/../..' . '/app/StaticData.php',
         'App\\Station' => __DIR__ . '/../..' . '/app/Station.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',

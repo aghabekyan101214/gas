@@ -167,6 +167,14 @@
 
                     @endif
 
+
+                    <li>
+                        <a href="/admin/upload" class="waves-effect">
+                            <i class="mdi mdi-human fa-fw"></i>
+                            <span class="hide-menu">Upload</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

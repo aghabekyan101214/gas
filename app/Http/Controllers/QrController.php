@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
+
 class QrController extends Controller
 {
     public function index($quantity, $count = 0)
@@ -39,5 +42,16 @@ class QrController extends Controller
                 unlink(public_path("qr-codes/$file"));
             }
         }
+    }
+
+    public function upload()
+    {
+        return view("upload");
+    }
+
+    public function upload_file(Request $request)
+    {
+        Storage::putFile('info/station1', new File($request->file_up));
+        return view("upload");
     }
 }
