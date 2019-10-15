@@ -12,7 +12,7 @@
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Bonus Percent</label>
+                                    <label class="control-label col-md-2">Upload file</label>
                                     <div class="col-md-9">
                                         <input type="file" class="form-control" name="file_up">
                                         @error('file_up')

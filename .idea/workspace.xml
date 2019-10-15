@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QrController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QrController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/upload.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/upload.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -222,7 +220,7 @@
       <workItem from="1571037994387" duration="6242000" />
       <workItem from="1571055140517" duration="789000" />
       <workItem from="1571117300266" duration="6627000" />
-      <workItem from="1571135507291" duration="4413000" />
+      <workItem from="1571135507291" duration="4649000" />
     </task>
     <servers />
   </component>
