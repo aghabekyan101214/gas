@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Dispenser;
 use App\Fuel;
 use App\Station;
@@ -21,7 +22,6 @@ class FuelController extends Controller
     public function index(Request $request)
     {
 //        check  if super admin, then show all results
-
         if(Auth::user()->role == 1) {
             $stations = Station::all();
             $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
@@ -34,24 +34,43 @@ class FuelController extends Controller
             $stations = Station::whereIn("id", $station_ids)->get();
         }
 
-        if(null != $request->station_id) {
-            $fuels = Fuel::whereHas("dispensers", function($query) use ($request) {
-                $query->whereHas("stations", function($query) use ($request) {
-                    $query->whereIn("stations.id", [$request->station_id]);
+        $fuels = Fuel::whereHas("dispensers", function($query) use ($request) {
+            if(null != $request->dispenser_id) {
+                $query->where("dispenser_id", $request->dispenser_id)->whereHas("stations", function($query) use($request) {
+                    if(null != $request->station_id) $query->whereIn("stations.id", [$request->station_id]);
                 });
-            })->with(["bonuses", "clients"])
-                ->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+            } else if(null != $request->station_id) {
+                $query->whereHas("stations", function($query) use($request) {
+                    if(null != $request->station_id) $query->whereIn("stations.id", [$request->station_id]);
+                });
+            }
+            });
+        if(null != $request->client_id) {
+            $fuels->whereHas("clients", function($query) use($request) {
+                if(null != $request->client_id) $query->where("client_id", $request->client_id);
+            });
+        } else {
+            $fuels->with("clients");
         }
+            if(null != $request->from) {
+                $request->from != $request->to ? $fuels->whereDate("created_at", ">=", $request->from)->whereDate("created_at", "<=", $request->to) : $fuels->whereDate("created_at", $request->from);
+            } else {
+                $fuels->whereDate("created_at", date('Y-m-d', time()));
+            }
+            if(null != $request->bonus_type) {
+                $mark = $request->bonus_type == 1 ? ">" : "<";
+                $fuels->whereHas("bonuses", function($query) use($request, $mark) {
+                   $query->where("bonus", $mark, 0);
+                });
+            } else {
+                $fuels->with("bonuses");
+            }
+            $fuels = $fuels->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
 
-        elseif(null != $request->dispenser_id) {
-            $fuels = Fuel::whereHas("dispensers", function($query) use ($request) {
-                $query->where("dispenser_id", $request->dispenser_id)->with("stations");
-            })->with(["bonuses", "clients"])
-                ->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
-        }
 
         $dispensers = $this->getDispensers($request);
-        return view('Fuel/index', compact("fuels", "stations", "request", "dispensers"));
+        $clients = Client::all();
+        return view('Fuel/index', compact("fuels", "stations", "request", "dispensers", "clients"));
     }
 
     /**

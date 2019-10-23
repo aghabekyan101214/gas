@@ -48,6 +48,7 @@ class ClientController extends Controller
         $client->name = $request->name;
         $client->surname = $request->surname;
         $client->birthday = $request->birthday !== null ? strtotime($request->birthday) : null;
+        $client->passport = $request->passport;
         $client->car = $request->car;
         $client->license_plate = $request->license_plate;
         $client->qr = $request->qr;
@@ -96,6 +97,7 @@ class ClientController extends Controller
         $client->name = $request->name;
         $client->surname = $request->surname;
         $client->birthday = $request->birthday !== null ? strtotime($request->birthday) : null;
+        $client->passport = $request->passport;
         $client->car = $request->car;
         $client->license_plate = $request->license_plate;
         $client->qr = $request->qr;
@@ -112,7 +114,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->back();
     }
 
 }

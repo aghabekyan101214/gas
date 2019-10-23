@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="white-box">
-        <h3 class="box-title m-b-10">Fuels data</h3>
+        <h3 class="box-title m-b-10">Exceeds</h3>
         <div class="table-responsive">
             <table id="table" class="table table-striped">
                 <thead>

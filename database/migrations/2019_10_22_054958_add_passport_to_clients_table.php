@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQrsTable extends Migration
+class AddPassportToClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateQrsTable extends Migration
      */
     public function up()
     {
-        Schema::create('qrs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::table('clients', function (Blueprint $table) {
+            $table->string("passport", 255)->nullable();
         });
     }
 
@@ -26,6 +25,8 @@ class CreateQrsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qrs');
+        Schema::table('clients', function (Blueprint $table) {
+            //
+        });
     }
 }

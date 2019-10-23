@@ -13,12 +13,14 @@ class AdminsPagesTableSeeder extends Seeder
     public function run()
     {
         $data = array(
-            array("name" => "users"),
+            array("name" => "admins"),
             array("name" => "stations"),
             array("name" => "dispensers"),
             array("name" => "static-data"),
             array("name" => "fuels"),
             array("name" => "clients"),
+            array("name" => "bonuses"),
+            array("name" => "fuels-limit"),
         );
         Page::insert($data);
     }

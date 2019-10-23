@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="white-box">
-        <h3 class="box-title m-b-10">Fuels data</h3>
+        <h3 class="box-title m-b-10">Redeem data</h3>
         <div class="table-responsive">
             <table id="table" class="table table-striped">
                 <thead>
@@ -29,11 +29,7 @@
                     <td></td>
 
                     <td>
-                        <select onchange="filter()" name="bonus_type" id="" class="form-control bonus_type">
-                            <option value="">All</option>
-                            <option @if($request->bonus_type == 1) selected @endif value="1">Bonus</option>
-                            <option @if($request->bonus_type == 2) selected @endif value="2">Redeem</option>
-                        </select>
+
                     </td>
 
                     <td>
@@ -65,7 +61,7 @@
                             <td>{{ $fuel->dispensers->stations->name  }}</td>
                             <td>{{ $fuel->dispensers->name }}</td>
                             <td>{{ $fuel->liter }}</td>
-                            <td>@if(isset($fuel->bonuses->bonus)) {{ $fuel->bonuses->bonus }} @endif</td>
+                            <td>@if(isset($fuel->bonuses->bonus)) {{ -$fuel->bonuses->bonus }} @endif</td>
                             <td>@if(isset($fuel->clients->name)) {{ $fuel->clients->name }} @endif</td>
                             <td>{{ $fuel->created_at }}</td>
                         </tr>
@@ -97,7 +93,7 @@
             if(client != "") params.client_id = client;
             if(created_at != "") { params.from = from; params.to = to; }
             var query = $.param(params);
-            window.location.replace("/admin/fuels?" + query);
+            window.location.replace("/admin/redeems?" + query);
         }
 
         $(document).on("click", ".applyBtn", function () {

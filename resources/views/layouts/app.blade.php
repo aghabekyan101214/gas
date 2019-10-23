@@ -167,6 +167,39 @@
 
                     @endif
 
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 7])->first() != null || Auth::user()->role == 1 )
+
+                        <li>
+                            <a href="/admin/bonuses" class="waves-effect">
+                                <i class="mdi mdi-coin fa-fw"></i>
+                                <span class="hide-menu">Bonuses</span>
+                            </a>
+                        </li>
+
+                    @endif
+
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 8])->first() != null || Auth::user()->role == 1 )
+
+                        <li>
+                            <a href="/admin/redeems" class="waves-effect">
+                                <i class="mdi mdi-backup-restore fa-fw"></i>
+                                <span class="hide-menu">Redeems</span>
+                            </a>
+                        </li>
+
+                    @endif
+
+{{--                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 9])->first() != null || Auth::user()->role == 1 )--}}
+
+{{--                        <li>--}}
+{{--                            <a href="/admin/exceeds" class="waves-effect">--}}
+{{--                                <i class="mdi mdi-speedometer fa-fw"></i>--}}
+{{--                                <span class="hide-menu">Fuel Limit Exceeds</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+
+{{--                    @endif--}}
+
 
                     <li>
                         <a href="/admin/upload" class="waves-effect">
@@ -189,6 +222,13 @@
 
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success" style="text-align: right">
+                                    <strong style="font-size: 20px">Bonus Points {{ $bonus_points->bonus }} liters</strong>
+                                </div>
+                            </div>
+                        </div>
                             @yield('content')
                         </div>
                     </div>
@@ -201,6 +241,10 @@
 
 {{--data table--}}
 <script src="{{asset('assets/plugins/bower_components/datatables/datatables.min.js')}}"></script>
+<!-- Plugin JavaScript -->
+<script src="{{ asset("assets/moment/moment.min.js") }}"></script>
+<!--DateRAngePicker Js-->
+<script src="{{ asset("assets/daterangepicker/daterangepicker.js") }}"></script>
 <script>
     $(function () {
         $('#myTable').DataTable();
@@ -214,7 +258,10 @@
     $('.daterange-datepicker').daterangepicker({
         buttonClasses: ['btn', 'btn-sm'],
         applyClass: 'btn-danger',
-        cancelClass: 'btn-inverse'
+        cancelClass: 'btn-inverse',
+        locale: {
+            format: 'Y-M-D'
+        }
     });
 
 </script>
@@ -233,8 +280,6 @@
 <script src="{{asset('assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
 <!--Select2-->
 <script src="{{ asset("assets/select2/dist/js/select2.min.js") }}"></script>
-<!--DateRAngePicker Js-->
-<script src="{{ asset("assets/daterangepicker/daterangepicker.js") }}"></script>
 </body>
 
 </html>

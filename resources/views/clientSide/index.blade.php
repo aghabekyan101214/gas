@@ -34,13 +34,25 @@
         </div>
     </div>
 
-{{--// Popup Modal //--}}
+    {{--// Popup Modal //--}}
     <div id="popup" class="modal fade" role="dialog">
         <div class="modal-dialog" style="width: 50%;">
 
             <!-- Modal content-->
             <div class="modal-content" style="height: 50%;">
                 <h1 style="text-align: center; margin-top: 0">Շնորհավորում ենք, Դուք Ունեք <span class="bonus-span"></span>լ Բոնուս</h1>
+            </div>
+
+        </div>
+    </div>
+
+    {{--// Popup Modal Redeem //--}}
+    <div id="popup-redeem" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 50%;">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="height: 50%;">
+                <h1 style="text-align: center; margin-top: 0">Շնորհավորում ենք, Դուք Հաջողությամբ Օգտագործեցիք <span class="redeem-span"></span>լ Ձեր Բոնուսային Միավորներից</h1>
             </div>
 
         </div>
@@ -112,14 +124,21 @@
             }
             $(".preloader").css("display", "block");
             $.post("/redeem", {qr: window.qr, identificator: window.id, liter: liter}).done(function( data ) {
+                $("#bonus").modal("hide");
                 if(data.bonus) {
-                    alert("Շնորհավոր");
+                    $(".preloader").css("display", "none");
+                    if(data == 0) return;
+                    $("#popup-redeem").modal();
+                    $(".redeem-span").html(liter);
                 } else if(data == 0) {
                     alert("Նշված քանակը չի համապատասխանում հաճախորդի բոնուսին");
                 }
-                location.reload();
             })
         }
+
+        $('#popup-redeem').on('hidden.bs.modal', function () {
+            location.reload();
+        });
     </script>
 @endsection
 

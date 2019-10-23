@@ -43,6 +43,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Passport</label>
+                                    <div class="col-md-9">
+                                        <input type="text" placeholder="Passport" value="{{ $client->passport }}" class="form-control" name="passport">
+                                        @error('passport')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-md-2">Car</label>
                                     <div class="col-md-9">
                                         <input type="text" placeholder="Car" value="{{ $client->car }}" class="form-control" name="car">

@@ -17,6 +17,7 @@ class StaticController extends Controller
     {
         $request->validate([
             'bonus' => 'required|numeric',
+            'filling_max_quantity' => 'required|integer',
         ]);
 
         $data = StaticData::first();
@@ -24,6 +25,7 @@ class StaticController extends Controller
             $data = new StaticData();
         }
         $data->bonus = $request->bonus;
+        $data->filling_max_quantity = $request->filling_max_quantity;
         $data->save();
 
         return redirect("admin/static-data");

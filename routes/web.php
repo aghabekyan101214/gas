@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', "checkRole"]], funct
     Route::get("generate-qr/{quantity}", "QrController@index");
     Route::get("upload", "QrController@upload");
     Route::post("upload-file", "QrController@upload_file");
+    Route::get("bonuses", "BonusController@index");
+    Route::get("exceeds", "CountFuelsController@index");
+    Route::resource("redeems", "RedeemController");
 });
 Route::resource('bonus', 'BonusController');
 Route::post("redeem", "BonusController@redeem");
+Route::get("us", "CountFuelsController@count");

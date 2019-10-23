@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Station;
 use Illuminate\Http\Request;
 use App\Dispenser;
 use App\Fuel;
 use App\Client;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Bonus;
 use App\StaticData;
@@ -14,6 +16,7 @@ class BonusController extends Controller
 {
 
     private $bonus_percent = 0;
+    const PAGINATION = 100;
 
     public function __construct()
     {
@@ -28,9 +31,47 @@ class BonusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //        check  if super admin, then show all results
+        if(Auth::user()->role == 1) {
+            $stations = Station::all();
+            $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
+                $query->with("stations");
+            }])->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+        } else {
+//            else show the results, which have been assigned by super admin before
+            $fuels = $this->getFuels()['fuels'];
+            $station_ids = $this->getFuels()['stations'];
+            $stations = Station::whereIn("id", $station_ids)->get();
+        }
+
+        $fuels = Fuel::whereHas("dispensers", function($query) use ($request) {
+            if(null != $request->dispenser_id) {
+                $query->where("dispenser_id", $request->dispenser_id)->whereHas("stations", function($query) use($request) {
+                    if(null != $request->station_id) $query->whereIn("stations.id", [$request->station_id]);
+                });
+            } else if(null != $request->station_id) {
+                $query->whereHas("stations", function($query) use($request) {
+                    if(null != $request->station_id) $query->whereIn("stations.id", [$request->station_id]);
+                });
+            }
+        })->whereHas("clients", function($query) use($request) {
+            if(null != $request->client_id) $query->where("client_id", $request->client_id);
+        });
+        if(null != $request->from) {
+            $request->from != $request->to ? $fuels->whereDate("created_at", ">=", $request->from)->whereDate("created_at", "<=", $request->to) : $fuels->whereDate("created_at", $request->from);
+        } else {
+            $fuels->whereDate("created_at", date('Y-m-d', time()));
+        }
+        $fuels->whereHas("bonuses", function($query) use($request) {
+            $query->where("bonus", ">", 0);
+        });
+        $fuels = $fuels->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+
+        $dispensers = $this->getDispensers($request);
+        $clients = Client::all();
+        return view('Bonus.bonuses', compact("fuels", "stations", "request", "dispensers", "clients", "bonus"));
     }
 
     /**
@@ -103,5 +144,42 @@ class BonusController extends Controller
     public function redeem(Request $request)
     {
         return $this->store($request, 1);
+    }
+
+    private function getFuels()
+    {
+        $stations = DB::table("admins_stations")->select("station_id")->where("user_id", Auth::user()->id)->get();
+        $station_ids = array();
+        foreach ($stations as $s) {
+            $station_ids[] = $s->station_id;
+        }
+        $fuels = Fuel::whereHas("dispensers", function($query) use ($station_ids) {
+            $query->whereHas("stations", function($query) use ($station_ids) {
+                $query->whereIn("stations.id", [$station_ids]);
+            });
+        })->with(["bonuses", "clients"])
+            ->orderBy("id", "DESC")->paginate(self::PAGINATION);
+        $data = array(
+            "fuels" => $fuels,
+            "stations" => $station_ids
+        );
+        return $data;
+    }
+
+    private function getDispensers(Request $request)
+    {
+        if(Auth::user()->role == 1) {
+            if(null == $request->station_id) {
+                return Dispenser::all();
+            }
+            return Dispenser::where("station_id", $request->station_id)->get();
+        } else {
+            if(null == $request->station_id) {
+                $station_ids = $this->getFuels()['stations'];
+                return Dispenser::whereIn("station_id", $station_ids)->get();
+            }
+            return Dispenser::where("station_id", $request->station_id)->get();
+        }
+
     }
 }

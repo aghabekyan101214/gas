@@ -21,6 +21,16 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Filling Max Quantity</label>
+                                    <div class="col-md-9">
+                                        <input type="number" placeholder="Filling Max Quantity" @if(isset($data->filling_max_quantity)) value="{{ $data->filling_max_quantity }}" @endif required class="form-control" name="filling_max_quantity">
+                                        @error('filling_max_quantity')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="form-actions">
                                     <div class="row">
                                         <div class="col-md-12">

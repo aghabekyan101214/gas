@@ -13,6 +13,7 @@
                     <th>Name</th>
                     <th>Surame</th>
                     <th>Birthday</th>
+                    <th>Passport</th>
                     <th>Car</th>
                     <th>License Plate</th>
                     <th>QR</th>
@@ -28,6 +29,7 @@
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->surname }}</td>
                         <td>{{ date("Y/M/d", $value->birthday) }}</td>
+                        <td>{{ $value->passport }}</td>
                         <td>{{ $value->car }}</td>
                         <td>{{ $value->license_plate }}</td>
                         <td>{{ $value->qr }}</td>
@@ -37,6 +39,13 @@
                             <a href="/admin/clients/{{$value->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-circle tooltip-primary">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
+                            <form style="display: inline-block" action="/admin/clients/{{$value->id}}" method="post">
+                                @csrf
+                                @method("DELETE")
+                                <button class="btn btn-danger btn-circle tooltip-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
