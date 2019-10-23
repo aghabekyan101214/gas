@@ -7,50 +7,6 @@
             <table id="table" class="table table-striped">
                 <thead>
                 <tr>
-                    <td>
-                        <select onchange="filter()" name="station_id" id="" class="form-control station">
-                            <option value="">All</option>
-                            @foreach($stations as $s)
-                                <option @if($request->station_id == $s->id) selected @endif value="{{ $s->id }}">{{ $s->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-
-                    <td style="width: 150px">
-                        <select onchange="filter()" name="dispenser_id" id="" class="form-control dispenser">
-                            <option value="">All</option>
-                            @foreach($dispensers as $d)
-                                <option @if($request->dispenser_id == $d->id) selected @endif value="{{ $d->id }}">{{ $d->name }}</option>
-                            @endforeach
-                        </select>
-
-                    </td>
-
-                    <td></td>
-
-                    <td>
-                        <select onchange="filter()" name="bonus_type" id="" class="form-control bonus_type">
-                            <option value="">All</option>
-                            <option @if($request->bonus_type == 1) selected @endif value="1">Bonus</option>
-                            <option @if($request->bonus_type == 2) selected @endif value="2">Redeem</option>
-                        </select>
-                    </td>
-
-                    <td>
-                        <select onchange="filter()" name="client_id" id="" class="form-control select2 client">
-                            <option value="">All</option>
-                            @foreach($clients as $c)
-                                <option @if($request->client_id == $c->id) selected @endif value="{{ $c->id }}">{{ $c->name . " " . $c->surname }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-
-                    <td>
-                        <input type="text" class="form-control daterange-datepicker" @if(null != $request->from && null != $request->to) value="{{ $request->from . " - " . $request->to }}" @else value=" " @endif>
-                    </td>
-
-                </tr>
-                <tr>
                     <th style="width: 150px">Station</th>
                     <th style="width: 150px">Dispenser</th>
                     <th>Liter</th>
@@ -60,19 +16,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($fuels as $bin => $fuel)
+                    @foreach($data as $bin => $d)
                         <tr>
-                            <td>{{ $fuel->dispensers->stations->name  }}</td>
-                            <td>{{ $fuel->dispensers->name }}</td>
-                            <td>{{ $fuel->liter }}</td>
-                            <td>@if(isset($fuel->bonuses->bonus)) {{ $fuel->bonuses->bonus }} @endif</td>
-                            <td>@if(isset($fuel->clients->name)) {{ $fuel->clients->name }} @endif</td>
-                            <td>{{ $fuel->created_at }}</td>
+                            <td>{{ $d->dispensers->stations->name  }}</td>
+                            <td>{{ $d->dispensers->name }}</td>
+                            <td>{{ $d->liter }}</td>
+                            <td>@if(isset($d->bonuses->bonus)) {{ $d->bonuses->bonus }} @endif</td>
+                            <td>@if(isset($d->clients->name)) {{ $d->clients->name }} @endif</td>
+                            <td>{{ $d->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $fuels->appends(request()->except('page'))->links() }}
+{{--            {{ $fuels->appends(request()->except('page'))->links() }}--}}
         </div>
     </div>
     <script>
@@ -97,7 +53,7 @@
             if(client != "") params.client_id = client;
             if(created_at != "") { params.from = from; params.to = to; }
             var query = $.param(params);
-            window.location.replace("/admin/fuels?" + query);
+            window.location.replace("/admin/exceeds?" + query);
         }
 
         $(document).on("click", ".applyBtn", function () {

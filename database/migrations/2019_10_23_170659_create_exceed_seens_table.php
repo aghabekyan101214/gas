@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStaticsTable extends Migration
+class CreateExceedSeensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateStaticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statics', function (Blueprint $table) {
+        Schema::create('exceed_seens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float("bonus");
-            $table->unsignedSmallInteger("sync")->default(0);
-            $table->unsignedSmallInteger("exceed_seen")->default(1);
-            $table->unsignedSmallInteger("seen_count")->default(0);
+            $table->unsignedSmallInteger("count");
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateStaticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statics');
+        Schema::dropIfExists('exceed_seens');
     }
 }

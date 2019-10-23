@@ -25,6 +25,7 @@ return array(
     'App\\Http\\Controllers\\ClientController' => $baseDir . '/app/Http/Controllers/ClientController.php',
     'App\\Http\\Controllers\\ClientSideController' => $baseDir . '/app/Http/Controllers/ClientSideController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\CountFuelsController' => $baseDir . '/app/Http/Controllers/CountFuelsController.php',
     'App\\Http\\Controllers\\DispenserController' => $baseDir . '/app/Http/Controllers/DispenserController.php',
     'App\\Http\\Controllers\\FileReadController' => $baseDir . '/app/Http/Controllers/FileReadController.php',
     'App\\Http\\Controllers\\FuelController' => $baseDir . '/app/Http/Controllers/FuelController.php',

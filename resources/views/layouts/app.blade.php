@@ -189,16 +189,16 @@
 
                     @endif
 
-{{--                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 9])->first() != null || Auth::user()->role == 1 )--}}
+                    @if(\Illuminate\Support\Facades\DB::table("admins_pages")->where(["user_id" => Auth::user()->id, "page_id" => 9])->first() != null || Auth::user()->role == 1 )
 
-{{--                        <li>--}}
-{{--                            <a href="/admin/exceeds" class="waves-effect">--}}
-{{--                                <i class="mdi mdi-speedometer fa-fw"></i>--}}
-{{--                                <span class="hide-menu">Fuel Limit Exceeds</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        <li>
+                            <a href="/admin/exceeds" class="waves-effect">
+                                <i class="mdi mdi-speedometer fa-fw"></i>
+                                <span class="hide-menu">Fuel Limit Exceeds</span>
+                            </a>
+                        </li>
 
-{{--                    @endif--}}
+                    @endif
 
 
                     <li>
@@ -229,6 +229,17 @@
                                 </div>
                             </div>
                         </div>
+                        @if($current_count != $seen_count)
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger" style="text-align: right">
+                                        <strong style="font-size: 20px">You Have New Fuel Limit Exceed, <a style="color: white; text-decoration: underline" href="/admin/exceeds"> Click Here </a> To Check</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @endif
                             @yield('content')
                         </div>
                     </div>

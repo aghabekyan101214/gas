@@ -492,6 +492,7 @@ class ComposerStaticInit2088e036061ddb9c6e43bf9bc92d944b
         'App\\Http\\Controllers\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientController.php',
         'App\\Http\\Controllers\\ClientSideController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientSideController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\CountFuelsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CountFuelsController.php',
         'App\\Http\\Controllers\\DispenserController' => __DIR__ . '/../..' . '/app/Http/Controllers/DispenserController.php',
         'App\\Http\\Controllers\\FileReadController' => __DIR__ . '/../..' . '/app/Http/Controllers/FileReadController.php',
         'App\\Http\\Controllers\\FuelController' => __DIR__ . '/../..' . '/app/Http/Controllers/FuelController.php',

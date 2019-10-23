@@ -3,40 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FuelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FuelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Qr.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Qr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_15_103558_create_qrs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_15_103558_create_qrs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/AdminsPagesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/AdminsPagesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Fuel/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Fuel/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clientSide/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clientSide/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clients/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clients/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_03_112024_create_statics_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_03_112024_create_statics_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/staticData/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/staticData/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/.php_cs" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/.php_cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/.php_cs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/.php_cs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Facades/Zipper.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Facades/Zipper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Repositories/RepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Repositories/RepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Repositories/ZipRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Repositories/ZipRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Zipper.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/Zipper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/ZipperServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/src/Chumper/Zipper/ZipperServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/tests/ArrayArchive.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/tests/ArrayArchive.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/tests/Repositories/ZipRepositoryTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/tests/Repositories/ZipRepositoryTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/chumper/zipper/tests/ZipperTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/chumper/zipper/tests/ZipperTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -258,7 +231,7 @@
       <workItem from="1571203337480" duration="1442000" />
       <workItem from="1571640592570" duration="12793000" />
       <workItem from="1571720310251" duration="11882000" />
-      <workItem from="1571807703144" duration="12115000" />
+      <workItem from="1571807703144" duration="20217000" />
     </task>
     <servers />
   </component>
