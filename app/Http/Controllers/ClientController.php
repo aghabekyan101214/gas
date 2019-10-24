@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -15,7 +16,7 @@ class ClientController extends Controller
     public function index()
     {
         $data = array(
-            "clients" => Client::orderBy("id", "desc")->get(),
+            "clients" => Client::orderBy("created_at", "desc")->get(),
         );
         return view("clients.index", compact("data"));
     }
@@ -45,6 +46,7 @@ class ClientController extends Controller
         ]);
 
         $client = new Client();
+        $client->id = GenerateRandomString::generate();
         $client->name = $request->name;
         $client->surname = $request->surname;
         $client->birthday = $request->birthday !== null ? strtotime($request->birthday) : null;

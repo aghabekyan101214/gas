@@ -39,7 +39,9 @@ class CountFuelsController extends Controller
         $this->setToSeen(count($data));
         $dispensers = $this->getDispensers($request);
         $clients = Client::all();
-        return view("exceeds.index", compact("data", "dispensers", "clients", "stations", "request"));
+        $current_count = 0;
+        $seen_count = 0;
+        return view("exceeds.index", compact("data", "dispensers", "clients", "stations", "request", "current_count", "seen_count"));
     }
 
 //    Simple function counting the fuel limit exceed
@@ -49,7 +51,9 @@ class CountFuelsController extends Controller
         $count = self::$count ?? 3;
         $today = explode(" ", Carbon::today())[0];
         $value = Cache::remember('fuelCount', self::CACHE_SECONDS, function () use($count, $today) {
-            $fuels = Fuel::whereDate("created_at", $today)->whereRaw("client_id in (select client_id from fuels where date(created_at) = '".$today."' group by client_id HAVING count(*) >= $count )")->with(['clients', 'dispensers', 'bonuses'])->orderBy("id", "desc")->get();
+            $fuels = Fuel::whereDate("created_at", $today)->whereRaw("client_id in (select client_id from fuels where date(created_at) = '".$today."' group by client_id HAVING count(*) >= $count )")->whereHas("bonuses", function($query){
+                $query->where("bonus", ">", 0);
+            })->with(['clients', 'dispensers'])->orderBy("created_at", "desc")->get();
             return $fuels;
         });
         return $value;
@@ -99,7 +103,7 @@ class CountFuelsController extends Controller
                 $query->whereIn("stations.id", [$station_ids]);
             });
         })->with(["bonuses", "clients"])
-            ->orderBy("id", "DESC")->paginate(self::PAGINATION);
+            ->orderBy("created_at", "DESC")->paginate(self::PAGINATION);
         $data = array(
             "fuels" => $fuels,
             "stations" => $station_ids

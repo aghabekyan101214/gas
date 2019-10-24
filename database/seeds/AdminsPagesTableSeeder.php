@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Page;
+use App\Traits\GenerateRandomString;
 
 class AdminsPagesTableSeeder extends Seeder
 {
@@ -13,14 +14,14 @@ class AdminsPagesTableSeeder extends Seeder
     public function run()
     {
         $data = array(
-            array("name" => "admins"),
-            array("name" => "stations"),
-            array("name" => "dispensers"),
-            array("name" => "static-data"),
-            array("name" => "fuels"),
-            array("name" => "clients"),
-            array("name" => "bonuses"),
-            array("name" => "fuels-limit"),
+            array("id" => GenerateRandomString::generate(), "name" => "admins"),
+            array("id" => GenerateRandomString::generate(), "name" => "stations"),
+            array("id" => GenerateRandomString::generate(), "name" => "dispensers"),
+            array("id" => GenerateRandomString::generate(), "name" => "static-data"),
+            array("id" => GenerateRandomString::generate(), "name" => "fuels"),
+            array("id" => GenerateRandomString::generate(), "name" => "clients"),
+            array("id" => GenerateRandomString::generate(), "name" => "bonuses"),
+            array("id" => GenerateRandomString::generate(), "name" => "fuels-limit"),
         );
         Page::insert($data);
     }

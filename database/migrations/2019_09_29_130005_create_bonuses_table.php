@@ -14,9 +14,9 @@ class CreateBonusesTable extends Migration
     public function up()
     {
         Schema::create('bonuses', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id', 255)->primary();
             $table->float("bonus");
-            $table->unsignedBigInteger("fuel_id");
+            $table->string("fuel_id", 255);
             $table->foreign("fuel_id")->references("id")->on("fuels")->onDelete("cascade")->onUpdate("cascade");
             $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();

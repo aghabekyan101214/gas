@@ -14,10 +14,10 @@ class CreateDispensersTable extends Migration
     public function up()
     {
         Schema::create('dispensers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id', 255)->primary();
             $table->string("name", 100);
             $table->string("identificator", 255);
-            $table->unsignedBigInteger("station_id");
+            $table->string("station_id", 255);
             $table->foreign("station_id")->references("id")->on("stations")->onDelete("cascade")->onUpdate("cascade");
             $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();

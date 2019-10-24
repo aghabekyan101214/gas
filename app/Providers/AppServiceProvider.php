@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -30,7 +31,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $bonus = Client::selectRaw("sum(bonus) as bonus")->first();
-        $seen_count = StaticData::first()->seen_count;
+        $static = StaticData::first();
+        if(isset($static->updated_at) && $static->updated_at != Carbon::today()) {
+            $static->updated_at = Carbon::today();
+            $static->save();
+        }
+        $seen_count = $static->seen_count ?? 0;
         $current_count = count(CountFuelsController::count()) ?? 0;
         View::share('bonus_points', $bonus);
         View::share('seen_count', $seen_count);

@@ -14,7 +14,7 @@ class CreateExceedSeensTable extends Migration
     public function up()
     {
         Schema::create('exceed_seens', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id', 255)->primary();
             $table->unsignedSmallInteger("count");
             $table->timestamps();
         });

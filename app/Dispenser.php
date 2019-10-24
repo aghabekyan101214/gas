@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dispenser extends Model
 {
+    protected $keyType = 'string';
     public function stations()
     {
         return $this->belongsTo("App\Station", "station_id");

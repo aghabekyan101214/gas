@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dispenser;
+use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
 use App\Station;
 
@@ -45,10 +46,11 @@ class DispenserController extends Controller
         $request->validate([
             'name'          => 'required|max:100',
             'identificator' => 'required|unique:dispensers,identificator',
-            'station_id'    => 'required|integer'
+            'station_id'    => 'required'
         ]);
 
         $dispenser = new Dispenser();
+        $dispenser->id = GenerateRandomString::generate();
         $dispenser->name = $request->name;
         $dispenser->identificator = $request->identificator;
         $dispenser->station_id = $request->station_id;
@@ -92,7 +94,7 @@ class DispenserController extends Controller
         $request->validate([
             'name'          => 'required|max:100',
             'identificator' => $dispenser->identificator == $request->identificator ? 'required' : 'required|unique:dispensers,identificator',
-            'station_id'    => 'required|integer'
+            'station_id'    => 'required'
         ]);
 
         $dispenser->name = $request->name;

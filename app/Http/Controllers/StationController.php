@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Station;
+use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
 
 class StationController extends Controller
@@ -43,6 +44,7 @@ class StationController extends Controller
         ]);
 
         $station = new Station();
+        $station->id = GenerateRandomString::generate();
         $station->name = $request->name;
         $station->save();
 

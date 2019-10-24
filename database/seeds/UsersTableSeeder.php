@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use App\Traits\GenerateRandomString;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'id' => GenerateRandomString::generate(),
             'name' => 'Admin',
             'surname' => "Super",
             'email' => 'admin' . '@gmail.com',

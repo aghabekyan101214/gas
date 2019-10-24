@@ -14,10 +14,10 @@ class CreateAdminsPagesTable extends Migration
     public function up()
     {
         Schema::create('admins_pages', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger("user_id");
+            $table->string('id', 255)->primary();
+            $table->string("user_id", 255);
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
-            $table->unsignedBigInteger("page_id");
+            $table->string("page_id", 255);
             $table->foreign("page_id")->references("id")->on("pages")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });

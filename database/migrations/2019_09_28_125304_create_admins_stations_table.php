@@ -14,10 +14,10 @@ class CreateAdminsStationsTable extends Migration
     public function up()
     {
         Schema::create('admins_stations', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger("user_id");
+            $table->string('id', 255)->primary();
+            $table->string("user_id", 255);
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
-            $table->unsignedBigInteger("station_id");
+            $table->string("station_id", 255);
             $table->foreign("station_id")->references("id")->on("stations")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });

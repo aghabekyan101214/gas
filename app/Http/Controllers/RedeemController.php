@@ -26,7 +26,7 @@ class RedeemController extends Controller
             $stations = Station::all();
             $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
                 $query->with("stations");
-            }])->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+            }])->orderBy("fuels.created_at", "DESC")->paginate(self::PAGINATION);
         } else {
 //            else show the results, which have been assigned by super admin before
             $fuels = $this->getFuels()['fuels'];
@@ -55,7 +55,7 @@ class RedeemController extends Controller
         $fuels->whereHas("bonuses", function($query) use($request) {
             $query->where("bonus", "<", 0);
         });
-        $fuels = $fuels->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+        $fuels = $fuels->orderBy("fuels.created_at", "DESC")->paginate(self::PAGINATION);
 
 
         $dispensers = $this->getDispensers($request);
@@ -141,7 +141,7 @@ class RedeemController extends Controller
                 $query->whereIn("stations.id", [$station_ids]);
             });
         })->with(["bonuses", "clients"])
-            ->orderBy("id", "DESC")->paginate(self::PAGINATION);
+            ->orderBy("created_at", "DESC")->paginate(self::PAGINATION);
         $data = array(
             "fuels" => $fuels,
             "stations" => $station_ids

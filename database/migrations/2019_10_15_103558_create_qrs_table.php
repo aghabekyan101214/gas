@@ -14,7 +14,7 @@ class CreateQrsTable extends Migration
     public function up()
     {
         Schema::create('qrs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id', 255)->primary();
             $table->timestamps();
         });
     }

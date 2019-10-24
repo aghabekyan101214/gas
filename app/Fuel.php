@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fuel extends Model
 {
+    protected $keyType = 'string';
     protected $guarded = [];
 
     public function clients()

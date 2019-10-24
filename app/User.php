@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\GenerateRandomString;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +18,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'surname', 'age', 'identity_number', 'passport_number', 'car_model', 'vehicle_plate', 'email', 'password', 'role', 'password_show', 'station_id'
     ];
+
+    protected $keyType = 'string';
 
     /**
      * The attributes that should be hidden for arrays.

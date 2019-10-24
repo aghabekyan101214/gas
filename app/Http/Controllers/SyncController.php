@@ -11,6 +11,8 @@ class SyncController extends Controller
     private static $conn;
     private static $conn2;
 
+    const FUELS_TABLE = "fuels";
+
     public function __construct()
     {
         self::$conn = DB::connection("mysql");
@@ -19,18 +21,22 @@ class SyncController extends Controller
 
     public static function start()
     {
+        DB::beginTransaction();
         self::syncFuels();
+        DB::commit();
     }
 
     private static function syncFuels()
     {
-        $newFuels = self::$conn2->table("fuels")->where(["sync" => 0])->get();
-        DB::beginTransaction();
-        dd($newUsers);
-        if(null != $newUsers) {
-            self::$conn->table("users")->insert();
+        $fuelsModel = self::$conn->table(self::FUELS_TABLE)->where(["sync" => 0]);
+        $newFuels = $fuelsModel->get(["dispenser_id", "client_id", "liter", "price", "created_at", "updated_at"]);
+
+        if(null != $newFuels) {
+            foreach ($newFuels as $fuel) {
+                self::$conn2->table(self::FUELS_TABLE)->insert((array) $fuel);
+            }
+            $fuelsModel->update(['sync' => 1]);
         }
-        DB::commit();
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
 Use App\User;
 Use Auth;
@@ -50,7 +51,11 @@ class UserController extends Controller
 
         DB::beginTransaction();
 
+//        generating random id for user because it didnt work with sync
+        $userId = GenerateRandomString::generate();
+
         $user = new User();
+        $user->id = $userId;
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
@@ -58,8 +63,27 @@ class UserController extends Controller
         $user->password_show = $request->password;
         $user->role = 2;
         $user->save();
-        $user->stations()->sync($request->station_id);
-        $user->pages()->sync($request->pages);
+
+        if(null != $request->station_id) {
+            foreach($request->station_id as $station_id) {
+
+                DB::table("admins_stations")->insert([
+                    "id" => GenerateRandomString::generate(),
+                    "station_id" => $station_id,
+                    "user_id" => $userId
+                ]);
+            }
+        }
+        if(null != $request->pages) {
+            foreach($request->pages as $page) {
+
+                DB::table("admins_pages")->insert([
+                    "id" => GenerateRandomString::generate(),
+                    "page_id" => $page,
+                    "user_id" => $userId
+                ]);
+            }
+        }
 
         DB::commit();
 
@@ -132,10 +156,30 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->password_show = $request->password;
         $user->save();
+
         $user->stations()->detach();
         $user->pages()->detach();
-        $user->stations()->sync($request->station_id);
-        $user->pages()->sync($request->pages);
+
+        if(null != $request->station_id) {
+            foreach($request->station_id as $station_id) {
+
+                DB::table("admins_stations")->insert([
+                    "id" => GenerateRandomString::generate(),
+                    "station_id" => $station_id,
+                    "user_id" => $id
+                ]);
+            }
+        }
+        if(null != $request->pages) {
+            foreach($request->pages as $page) {
+
+                DB::table("admins_pages")->insert([
+                    "id" => GenerateRandomString::generate(),
+                    "page_id" => $page,
+                    "user_id" => $id
+                ]);
+            }
+        }
 
         DB::commit();
 

@@ -14,10 +14,10 @@ class CreateFuelsTable extends Migration
     public function up()
     {
         Schema::create('fuels', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger("dispenser_id");
+            $table->string('id', 255)->primary();
+            $table->string("dispenser_id", 255);
             $table->foreign("dispenser_id")->references("id")->on("dispensers")->onDelete("cascade")->onUpdate("cascade");
-            $table->unsignedBigInteger("client_id")->nullable();
+            $table->string("client_id", 255)->nullable();
             $table->foreign("client_id")->references("id")->on("clients")->onDelete("cascade")->onUpdate("cascade");
             $table->float("liter");
             $table->float("price");

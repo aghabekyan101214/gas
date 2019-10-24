@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Bonus;
 use App\StaticData;
+use App\Traits\GenerateRandomString;
 
 class BonusController extends Controller
 {
@@ -33,12 +34,12 @@ class BonusController extends Controller
      */
     public function index(Request $request)
     {
-        //        check  if super admin, then show all results
+//        check  if super admin, then show all results
         if(Auth::user()->role == 1) {
             $stations = Station::all();
             $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
                 $query->with("stations");
-            }])->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
+            }])->orderBy("fuels.created_at", "DESC")->paginate(self::PAGINATION);
         } else {
 //            else show the results, which have been assigned by super admin before
             $fuels = $this->getFuels()['fuels'];
@@ -59,16 +60,15 @@ class BonusController extends Controller
         })->whereHas("clients", function($query) use($request) {
             if(null != $request->client_id) $query->where("client_id", $request->client_id);
         });
+        $fuels->whereHas("bonuses", function($query) {
+            $query->where("bonuses.bonus", '>', 0);
+        });
         if(null != $request->from) {
             $request->from != $request->to ? $fuels->whereDate("created_at", ">=", $request->from)->whereDate("created_at", "<=", $request->to) : $fuels->whereDate("created_at", $request->from);
         } else {
             $fuels->whereDate("created_at", date('Y-m-d', time()));
         }
-        $fuels->whereHas("bonuses", function($query) use($request) {
-            $query->where("bonus", ">", 0);
-        });
-        $fuels = $fuels->orderBy("fuels.id", "DESC")->paginate(self::PAGINATION);
-
+        $fuels = $fuels->orderBy("fuels.created_at", "DESC")->paginate(self::PAGINATION);
         $dispensers = $this->getDispensers($request);
         $clients = Client::all();
         return view('Bonus.bonuses', compact("fuels", "stations", "request", "dispensers", "clients", "bonus"));
@@ -99,7 +99,7 @@ class BonusController extends Controller
         if($client->bonus < $request->liter) return 0;
         $this->set($request, $rows);
         $dispenser = Dispenser::with(["fuels" => function($query) {
-            $query->orderBy("id", "desc")->first();
+            $query->orderBy("created_at", "desc")->first();
         }])->where("identificator", $request->identificator)->first();
         DB::beginTransaction();
 
@@ -112,6 +112,7 @@ class BonusController extends Controller
 //        give the client bonus
 
         $bonus = new Bonus();
+        $bonus->id = GenerateRandomString::generate();
         $bonus->fuel_id = $fuel->id;
         $bonus->bonus = $redeem == null ? ($fuel->liter * $this->bonus_percent) / 100 : -$request->liter;
         $bonus->save();
@@ -158,7 +159,7 @@ class BonusController extends Controller
                 $query->whereIn("stations.id", [$station_ids]);
             });
         })->with(["bonuses", "clients"])
-            ->orderBy("id", "DESC")->paginate(self::PAGINATION);
+            ->orderBy("created_at", "DESC")->paginate(self::PAGINATION);
         $data = array(
             "fuels" => $fuels,
             "stations" => $station_ids

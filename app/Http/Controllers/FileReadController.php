@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FileRead;
+use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Dispenser;
@@ -54,6 +55,7 @@ class FileReadController extends Controller
             $dispenser = Dispenser::where("identificator", $data[0])->first();
             if(null == $dispenser) return;
             $fuel = new Fuel([
+                "id" => GenerateRandomString::generate(),
                 "dispenser_id" => $dispenser->id,
                 "liter" => floatval($data[1]),
                 "price" => floatval($data[2])
