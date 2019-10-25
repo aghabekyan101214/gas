@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $static = StaticData::first();
         if(isset($static->updated_at) && $static->updated_at != Carbon::today()) {
             $static->updated_at = Carbon::today();
+            $static->seen_count = 0;
             $static->save();
         }
         $seen_count = $static->seen_count ?? 0;

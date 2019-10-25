@@ -15,9 +15,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'surname', 'age', 'identity_number', 'passport_number', 'car_model', 'vehicle_plate', 'email', 'password', 'role', 'password_show', 'station_id'
-    ];
+//    protected $fillable = [
+//        'name', 'surname', 'age', 'identity_number', 'passport_number', 'car_model', 'vehicle_plate', 'email', 'password', 'role', 'password_show', 'station_id', 'sync'
+//    ];
+    protected $guarded = [];
 
     protected $keyType = 'string';
 

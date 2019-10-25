@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\Dispenser;
 use App\Station;
+use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
 use App\Fuel;
 use Illuminate\Support\Facades\Auth;
@@ -115,7 +116,8 @@ class CountFuelsController extends Controller
 
     private function setToSeen($count)
     {
-        $static = StaticData::first();
+        $static = StaticData::first() ?? new StaticData();
+        $static->id = GenerateRandomString::generate();
         $static->exceed_seen = 1;
         $static->seen_count = $count;
         $static->save();

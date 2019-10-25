@@ -14,7 +14,7 @@ class AddFillingMaxQuantityToStaticsTable extends Migration
     public function up()
     {
         Schema::table('statics', function (Blueprint $table) {
-            $table->integer("filling_max_quantity");
+            $table->integer("filling_max_quantity")->default(3);
         });
     }
 

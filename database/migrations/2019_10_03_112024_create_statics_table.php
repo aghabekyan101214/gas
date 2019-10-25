@@ -15,7 +15,7 @@ class CreateStaticsTable extends Migration
     {
         Schema::create('statics', function (Blueprint $table) {
             $table->string('id', 255)->primary();
-            $table->float("bonus");
+            $table->float("bonus")->default(0);
             $table->unsignedSmallInteger("sync")->default(0);
             $table->unsignedSmallInteger("exceed_seen")->default(1);
             $table->unsignedSmallInteger("seen_count")->default(0);

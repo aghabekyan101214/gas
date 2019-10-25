@@ -12,6 +12,8 @@
     }
 </style>
 @section('content')
+    <img src="{{ asset("assets/images/filling.gif") }}" width="360" height="360" />
+
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="text-align: center">
