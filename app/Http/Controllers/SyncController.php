@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bonus;
 use App\Client;
 use App\Dispenser;
+use App\Page;
 use App\Station;
 use Illuminate\Support\Facades\DB;
 use App\Fuel;
@@ -25,6 +26,9 @@ class SyncController extends Controller
     const DISPENSERS_TABLE = "dispensers";
     const CLIENTS_TABLE = "clients";
     const BONUSES_TABLE = "bonuses";
+    const ADMINS_PAGES = "admins_pages";
+    const PAGES_TABLE = "pages";
+    const ADMINS_STATIONS = "admins_stations";
 
     public function __construct()
     {
@@ -44,6 +48,9 @@ class SyncController extends Controller
         $self->syncFuels();
         $self->syncBonuses();
         $self->syncUpdateFuels();
+        $self->syncPages();
+        $self->syncAdminsPages();
+        $self->syncAdminsStations();
         DB::commit();
     }
 
@@ -270,6 +277,77 @@ class SyncController extends Controller
                 }
                 $data->update(["sync" => self::SYNCHRONIZED, "updated_at" => $fuel->created_at]);
                 \Log::info("Fuels Table Updated");
+            } catch (\Exception $exception) {
+                Log::info($exception);
+            }
+        }
+    }
+
+    private static function syncPages()
+    {
+        $data = Page::where("sync", self::NOT_SYNCHRONIZED);
+        $pages = $data->get();
+        if (null != $pages->first()) {
+            try {
+
+                foreach ($pages as $page) {
+
+                    self::$conn2->table(self::PAGES_TABLE)->insert([
+                        "id" => $page->id,
+                        "name" => $page->name,
+                    ]);
+
+                }
+                $data->update(["sync" => self::SYNCHRONIZED]);
+                \Log::info("Pages Table Synchronized");
+            } catch (\Exception $exception) {
+                Log::info($exception);
+            }
+        }
+    }
+
+    private static function syncAdminsPages()
+    {
+        $data = DB::table(self::ADMINS_PAGES)->where("sync", self::NOT_SYNCHRONIZED);
+        if (null != $data->get()->first()) {
+            $admins_pages = DB::table(self::ADMINS_PAGES)->get();
+            try {
+                self::$conn2->table(self::ADMINS_PAGES)->delete();
+                foreach ($admins_pages as $a) {
+
+                    self::$conn2->table(self::ADMINS_PAGES)->insert([
+                        "id" => $a->id,
+                        "user_id" => $a->user_id,
+                        "page_id" => $a->page_id,
+                    ]);
+
+                }
+                $data->update(["sync" => self::SYNCHRONIZED]);
+                \Log::info("admins_pages Table Synchronized");
+            } catch (\Exception $exception) {
+                Log::info($exception);
+            }
+        }
+    }
+
+    private static function syncAdminsStations()
+    {
+        $data = DB::table(self::ADMINS_STATIONS)->where("sync", self::NOT_SYNCHRONIZED);
+        if (null != $data->get()->first()) {
+            $admins_stations = DB::table(self::ADMINS_STATIONS)->get();
+            try {
+                self::$conn2->table(self::ADMINS_STATIONS)->delete();
+                foreach ($admins_stations as $a) {
+
+                    self::$conn2->table(self::ADMINS_STATIONS)->insert([
+                        "id" => $a->id,
+                        "user_id" => $a->user_id,
+                        "station_id" => $a->station_id,
+                    ]);
+
+                }
+                $data->update(["sync" => self::SYNCHRONIZED]);
+                \Log::info("admins_pages Table Synchronized");
             } catch (\Exception $exception) {
                 Log::info($exception);
             }

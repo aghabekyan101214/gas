@@ -19,6 +19,7 @@ class CreateAdminsStationsTable extends Migration
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
             $table->string("station_id", 255);
             $table->foreign("station_id")->references("id")->on("stations")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();
         });
     }

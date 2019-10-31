@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SyncController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SyncController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/GenerateRandomString.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/GenerateRandomString.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_03_112024_create_statics_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_03_112024_create_statics_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_22_072939_add_filling_max_quantity_to_statics__table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_22_072939_add_filling_max_quantity_to_statics__table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clientSide/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clientSide/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_28_125304_create_admins_stations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_28_125304_create_admins_stations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_07_075228_create_admins_pages_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_07_075228_create_admins_pages_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -234,7 +229,9 @@
       <workItem from="1571720310251" duration="11882000" />
       <workItem from="1571807703144" duration="20285000" />
       <workItem from="1571894860750" duration="22980000" />
-      <workItem from="1571980328047" duration="22662000" />
+      <workItem from="1571980328047" duration="23276000" />
+      <workItem from="1572241625917" duration="3033000" />
+      <workItem from="1572515117120" duration="74000" />
     </task>
     <servers />
   </component>

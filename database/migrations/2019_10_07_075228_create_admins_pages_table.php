@@ -19,6 +19,7 @@ class CreateAdminsPagesTable extends Migration
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
             $table->string("page_id", 255);
             $table->foreign("page_id")->references("id")->on("pages")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();
         });
     }
