@@ -12,23 +12,7 @@
     }
 </style>
 @section('content')
-    <img src="{{ asset("assets/images/filling.gif") }}" width="360" height="360" />
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="text-align: center">
-                <img class="img img-responsive" style="height: 50%; display: inline-block" src="{{ asset("assets/images/qr.png") }}" alt="">
-            </div>
-            <div class="col-md-12">
-                <h1 style="text-align: center">Սկանավորեք QR-ն Այստեղ</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 m-t-10">
-                <input required class="form-control qr" name="qr">
-            </div>
-        </div>
-    </div>
+    <input required class="form-control qr" name="qr">
     <!-- Modal -->
     <div id="bonus" class="modal fade" role="dialog">
         <div class="modal-dialog modal-here" style="width: 100%;">
@@ -87,7 +71,7 @@
                 if(parseFloat($(this).val()) > max) {
                     $(this).val(max);
                 }
-            })
+            });
             $(document).on("keydown", ".redeem-value", function (e) {
                 e.stopPropagation();
             });

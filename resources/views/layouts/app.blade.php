@@ -275,6 +275,12 @@
         }
     });
 
+    $(document).on("keydown", function(e){
+        if(e.key === "Enter") {
+            e.preventDefault();
+        }
+    });
+
 </script>
 
 <!-- Bootstrap Core JavaScript -->

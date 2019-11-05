@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bonus;
 use App\Client;
 use App\Traits\GenerateRandomString;
 use Illuminate\Http\Request;
@@ -118,6 +119,22 @@ class ClientController extends Controller
     {
         $client->delete();
         return redirect()->back();
+    }
+
+    /**
+     * Get Current Users Bonus Point
+     *
+     * @param  $client_id
+     * @return int
+     */
+    public static function getClientsBonus($client_id)
+    {
+        $bonuses = Bonus::selectRaw("sum(bonus) as bonus")->whereHas("fuels", function($query) use($client_id) {
+            $query->whereHas("clients", function($query) use($client_id){
+                $query->where("client_id", $client_id);
+            });
+        })->first();
+        return $bonuses->bonus ?? 0;
     }
 
 }

@@ -88,7 +88,7 @@ class BonusController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
 
     public function store(Request $request, $redeem = null)
@@ -101,25 +101,28 @@ class BonusController extends Controller
         $dispenser = Dispenser::with(["fuels" => function($query) {
             $query->orderBy("created_at", "desc")->first();
         }])->where("identificator", $request->identificator)->first();
+
         DB::beginTransaction();
 
 //        add client to current filling
+        $f = Fuel::find($dispenser->fuels[0]->id);
 
         $fuel = Fuel::find($dispenser->fuels[0]->id);
         $fuel->client_id = $client->id;
         $fuel->save();
 
 //        give the client bonus
-
-        $bonus = new Bonus();
-        $bonus->id = GenerateRandomString::generate();
-        $bonus->fuel_id = $fuel->id;
-        $bonus->bonus = $redeem == null ? ($fuel->liter * $this->bonus_percent) / 100 : -$request->liter;
-        $bonus->save();
+        if(null == $f->client_id){
+            $bonus = new Bonus();
+            $bonus->id = GenerateRandomString::generate();
+            $bonus->fuel_id = $fuel->id;
+            $bonus->bonus = $redeem == null ? ($fuel->liter * $this->bonus_percent) / 100 : -$request->liter;
+            $bonus->save();
+        }
 
 //        keep the data in clients table
-
-        $client->bonus = $client->bonus + $bonus->bonus;
+        $bonus = ClientController::getClientsBonus($client->id);
+        $client->bonus = $bonus;
         $client->save();
         DB::commit();
         $data = array(
