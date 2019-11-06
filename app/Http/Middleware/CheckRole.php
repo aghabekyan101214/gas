@@ -36,8 +36,8 @@ class CheckRole
     private function check($arr)
     {
         if(isset($arr[4])){
-            $arr[4] = $arr[4] != "users" ?? "admins";
-            $page = Page::where("name", $arr[4])->first();
+            $pageName = $arr[4] != "users" ? $arr[4] :  "admins";
+            $page = Page::where("name", $pageName)->first();
             $data = DB::table("admins_pages")->where(["page_id" => $page->id, "user_id" => Auth::user()->id])->first();
             if(null != $data) {
                 return 1;

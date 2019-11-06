@@ -7,6 +7,21 @@
             <table id="table" class="table table-striped">
                 <thead>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <select onchange="filter()" name="date" id="" class="form-control date">
+                            <option value="">All</option>
+                            @foreach($exceedFuels as $e)
+                                <option @if($request->date == $e->day) selected @endif value="{{ $e->day }}">{{ $e->day }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <th style="width: 150px">Station</th>
                     <th style="width: 150px">Dispenser</th>
                     <th>Liter</th>
@@ -39,19 +54,9 @@
         } );
 
         function filter() {
-            let station = $(".station").val();
-            let dispenser = $(".dispenser").val();
-            let bonus_type = $(".bonus_type").val();
-            let client = $(".client").val();
-            let created_at = $(".daterange-datepicker").val().split(" - ");
-            let from = created_at[0];
-            let to = created_at[1];
+            let date = $(".date").val();
             let params = {};
-            if(station != "") params.station_id = station;
-            if(dispenser != "") params.dispenser_id = dispenser;
-            if(bonus_type != "") params.bonus_type = bonus_type;
-            if(client != "") params.client_id = client;
-            if(created_at != "") { params.from = from; params.to = to; }
+            if(date != "") params.date = date;
             var query = $.param(params);
             window.location.replace("/admin/exceeds?" + query);
         }

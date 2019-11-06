@@ -105,19 +105,38 @@ class BonusController extends Controller
         DB::beginTransaction();
 
 //        add client to current filling
-        $f = Fuel::find($dispenser->fuels[0]->id);
+        $f = Fuel::with(['bonuses' => function ($query) {
+            $query->orderBy("created_at", "desc")->first();
+        }])->find($dispenser->fuels[0]->id);
+
+//        if more than one time is requested from one dispenser
+        if($f->client_id != null) {
+            if($f->bonuses->request_time > $request->time) {
+                return array(
+                    "bonus" => number_format(ClientController::getClientsBonus($client->id), 2)
+                );
+            }
+        }
 
         $fuel = Fuel::find($dispenser->fuels[0]->id);
         $fuel->client_id = $client->id;
         $fuel->save();
-
 //        give the client bonus
         if(null == $f->client_id){
             $bonus = new Bonus();
             $bonus->id = GenerateRandomString::generate();
             $bonus->fuel_id = $fuel->id;
+            $bonus->request_time = $request->time;
             $bonus->bonus = $redeem == null ? ($fuel->liter * $this->bonus_percent) / 100 : -$request->liter;
             $bonus->save();
+        }
+
+        if($f->client_id != null) {
+            if($f->bonuses->request_time < $request->time) {
+                $oldClient = Client::find($f->client_id);
+                $oldClient->bonus = ClientController::getClientsBonus($oldClient->id);
+                $oldClient->save();
+            }
         }
 
 //        keep the data in clients table

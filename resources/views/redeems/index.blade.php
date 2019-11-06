@@ -17,6 +17,7 @@
                     </td>
 
                     <td style="width: 150px">
+
                         <select onchange="filter()" name="dispenser_id" id="" class="form-control dispenser">
                             <option value="">All</option>
                             @foreach($dispensers as $d)
@@ -50,7 +51,7 @@
                     <th style="width: 150px">Station</th>
                     <th style="width: 150px">Dispenser</th>
                     <th>Liter</th>
-                    <th>Bonus</th>
+                    <th>Redeem</th>
                     <th>Client</th>
                     <th>Date</th>
                 </tr>

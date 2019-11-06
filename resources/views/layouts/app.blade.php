@@ -222,22 +222,28 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="alert alert-success" style="text-align: right">
-                                    <strong style="font-size: 20px">Bonus Points {{ $bonus_points->bonus }} liters</strong>
-                                </div>
-                            </div>
-                        </div>
-                        @if($current_count != $seen_count)
+
+                        @if(Auth::user()->role == 1)
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="alert alert-danger" style="text-align: right">
-                                        <strong style="font-size: 20px">You Have New Fuel Limit Exceed, <a style="color: white; text-decoration: underline" href="/admin/exceeds"> Click Here </a> To Check</strong>
+                                    <div class="alert alert-success" style="text-align: right">
+                                        <strong style="font-size: 20px">Bonus Points {{ $bonus_points->bonus }} liters</strong>
                                     </div>
                                 </div>
                             </div>
+
+                            @if($current_count != $seen_count)
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger" style="text-align: right">
+                                            <strong style="font-size: 20px">You Have New Fuel Limit Exceed, <a style="color: white; text-decoration: underline" href="/admin/exceeds"> Click Here </a> To Check</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            @endif
 
                         @endif
                             @yield('content')
@@ -300,5 +306,4 @@
 </body>
 
 </html>
-
 

@@ -23,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        for($i = 0; $i < 1; $i --) {
-
-        }
         return view('home');
     }
 }
