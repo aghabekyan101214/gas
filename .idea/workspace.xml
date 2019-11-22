@@ -4,15 +4,13 @@
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckRole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FuelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FuelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/AdminsPagesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/AdminsPagesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/redeems/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/redeems/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clients/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clients/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -245,7 +243,15 @@
       <workItem from="1572867924977" duration="8155000" />
       <workItem from="1572931317493" duration="16844000" />
       <workItem from="1573018693198" duration="2514000" />
-      <workItem from="1573021307039" duration="11205000" />
+      <workItem from="1573021307039" duration="12459000" />
+      <workItem from="1573103679587" duration="2442000" />
+      <workItem from="1573128384891" duration="3299000" />
+      <workItem from="1573189159167" duration="1203000" />
+      <workItem from="1573545600792" duration="4112000" />
+      <workItem from="1573622366721" duration="627000" />
+      <workItem from="1573627277804" duration="2602000" />
+      <workItem from="1573710028241" duration="624000" />
+      <workItem from="1574410131545" duration="2764000" />
     </task>
     <servers />
   </component>

@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Dispenser;
 use Illuminate\Database\Eloquent\Builder;
 use App\Fuel;
-use mysql_xdevapi\Exception;
 
 class FileReadController extends Controller
 {
+
+    const PATH = "info/station/";
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +21,7 @@ class FileReadController extends Controller
      */
     public static function start($count = 1)
     {
-        $path = public_path("info/station$count/");
+        $path = public_path(self::PATH);
         if($count > 10) return;
         if(!is_dir($path)) {
             return;
@@ -50,7 +51,7 @@ class FileReadController extends Controller
 
     private function insert($data)
     {
-        $data = explode(" ", $data);
+        $data = explode("\n", $data);
         if(isset($data[0])) {
             $dispenser = Dispenser::where("identificator", $data[0])->first();
             if(null == $dispenser) return;

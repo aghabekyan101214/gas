@@ -72,9 +72,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">QR</label>
+                                    <label class="control-label col-md-2">RFID</label>
                                     <div class="col-md-9">
-                                        <input type="text" placeholder="QR" value="{{ old("qr") }}" required class="form-control" name="qr">
+                                        <input type="text" placeholder="RFID" value="{{ old("qr") }}" required class="form-control" name="qr">
                                         @error('qr')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror

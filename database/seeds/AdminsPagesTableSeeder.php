@@ -21,7 +21,8 @@ class AdminsPagesTableSeeder extends Seeder
             array("id" => 5, "name" => "fuels"),
             array("id" => 6, "name" => "clients"),
             array("id" => 7, "name" => "bonuses"),
-            array("id" => 8, "name" => "fuels-limit"),
+            array("id" => 8, "name" => "redeems"),
+            array("id" => 9, "name" => "fuels-limit"),
         );
         Page::insert($data);
     }

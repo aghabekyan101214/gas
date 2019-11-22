@@ -21,29 +21,29 @@ class RedeemController extends Controller
      */
     public function index(Request $request)
     {
+        $station_ids = null;
         //        check  if super admin, then show all results
         if(Auth::user()->role == 1) {
             $stations = Station::all();
-            $fuels = Fuel::with(["bonuses", "clients", "dispensers" => function($query) {
-                $query->with("stations");
-            }])->orderBy("fuels.created_at", "DESC")->paginate(self::PAGINATION);
         } else {
 //            else show the results, which have been assigned by super admin before
-            $fuels = $this->getFuels()['fuels'];
             $station_ids = $this->getFuels()['stations'];
             $stations = Station::whereIn("id", $station_ids)->get();
         }
 
-        $fuels = Fuel::whereHas("dispensers", function($query) use ($request) {
+        $fuels = Fuel::whereHas("dispensers", function($query) use ($request, $station_ids) {
             if(null != $request->dispenser_id) {
                 $query->where("dispenser_id", $request->dispenser_id)->whereHas("stations", function($query) use($request) {
                     if(null != $request->station_id) $query->whereIn("stations.id", [$request->station_id]);
                 });
-            } else if(null != $request->station_id) {
-                $query->whereHas("stations", function($query) use($request) {
-                    if(null != $request->station_id) $query->whereIn("stations.id", [$request->station_id]);
-                });
             }
+            $query->whereHas("stations", function ($query) use ($request, $station_ids) {
+                if (null != $station_ids) {
+                    $query->whereIn("stations.id", $station_ids);
+                } elseif (null != $request->station_id) {
+                    $query->where("stations.id", $request->station_id);
+                }
+            });
         })->whereHas("clients", function($query) use($request) {
             if(null != $request->client_id) $query->where("client_id", $request->client_id);
         });
