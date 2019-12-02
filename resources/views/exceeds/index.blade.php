@@ -14,7 +14,6 @@
                     <td></td>
                     <td>
                         <select onchange="filter()" name="date" id="" class="form-control date">
-                            <option value="">All</option>
                             @foreach($exceedFuels as $e)
                                 <option @if($request->date == $e->day) selected @endif value="{{ $e->day }}">{{ $e->day }}</option>
                             @endforeach

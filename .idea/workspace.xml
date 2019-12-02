@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gas.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gas.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FuelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FuelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/AdminsPagesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/AdminsPagesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clients/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clients/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,6 +140,11 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
@@ -166,23 +165,23 @@
       <recent name="C:\xampp\htdocs\Gas\resources\views\clientSide" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -251,7 +250,9 @@
       <workItem from="1573622366721" duration="627000" />
       <workItem from="1573627277804" duration="2602000" />
       <workItem from="1573710028241" duration="624000" />
-      <workItem from="1574410131545" duration="2764000" />
+      <workItem from="1574410131545" duration="2809000" />
+      <workItem from="1574676969915" duration="2902000" />
+      <workItem from="1575264698014" duration="642000" />
     </task>
     <servers />
   </component>

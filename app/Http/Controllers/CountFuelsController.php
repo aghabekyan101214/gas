@@ -38,7 +38,7 @@ class CountFuelsController extends Controller
         }
         $data = self::count($request->date ?? "");
         $exceedFuels = $this->getExceedFuels();
-        $this->setToSeen(count($data));
+        $this->setToSeen(count($data), $request);
         $dispensers = $this->getDispensers($request);
         $clients = Client::all();
         $current_count = 0;
@@ -119,12 +119,15 @@ class CountFuelsController extends Controller
 
 //    No comment :)
 
-    private function setToSeen($count)
+    private function setToSeen($count, $request)
     {
+        $today = explode(" ", Carbon::today())[0];
         $static = StaticData::first() ?? new StaticData();
         $static->id = GenerateRandomString::generate();
         $static->exceed_seen = 1;
-        $static->seen_count = $count;
+        if($request->date == $today) {
+            $static->seen_count = $count;
+        }
         $static->save();
     }
 
