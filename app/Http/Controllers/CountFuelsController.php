@@ -43,7 +43,8 @@ class CountFuelsController extends Controller
         $clients = Client::all();
         $current_count = 0;
         $seen_count = 0;
-        return view("exceeds.index", compact("data", "dispensers", "clients", "stations", "request", "current_count", "seen_count", "exceedFuels"));
+        $today = explode(" ", Carbon::today())[0];
+        return view("exceeds.index", compact("data", "dispensers", "clients", "stations", "request", "current_count", "seen_count", "exceedFuels", "today"));
     }
 
 //    Simple function counting the fuel limit exceed
@@ -124,12 +125,12 @@ class CountFuelsController extends Controller
         $today = explode(" ", Carbon::today())[0];
         $static = StaticData::first() ?? new StaticData();
         $static->id = GenerateRandomString::generate();
-        $static->exceed_seen = 1;
-        if($request->date == $today) {
+        $static->exceed_seen = $count;
+        if($request->date == $today || $request->date == null) {
             $static->seen_count = $count;
         }
         $static->save();
-    }
+     }
 
 //    Inserts the order count into db if it has not inserted yet
 
@@ -149,12 +150,7 @@ class CountFuelsController extends Controller
 
     private function getExceedFuels()
     {
-        $query = "SELECT DATE_FORMAT(fuels.created_at,'%Y-%m-%d') as day FROM `bonuses`
-            join fuels on fuels.id = bonuses.fuel_id
-            join clients on clients.id = fuels.client_id
-            GROUP BY DATE_FORMAT(fuels.created_at, '%Y-%m-%d')
-            HAVING count(client_id) >= $this->count
-            order by DATE_FORMAT(fuels.created_at,'%Y-%m-%d') DESC";
+        $query = "SELECT day FROM ( SELECT DATE_FORMAT(fuels.created_at, '%Y-%m-%d') AS day, fuels.client_id FROM `bonuses` JOIN fuels ON fuels.id = bonuses.fuel_id JOIN clients ON clients.id = fuels.client_id GROUP BY DATE_FORMAT(fuels.created_at, '%Y-%m-%d'), fuels.client_id HAVING COUNT(fuels.client_id) >= $this->count ORDER BY DATE_FORMAT(fuels.created_at, '%Y-%m-%d') DESC ) tb GROUP by day ORDER BY DATE_FORMAT(day, '%Y-%m-%d') DESC";
         $days = DB::select($query);
         return $days;
     }

@@ -11,9 +11,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td>
                         <select onchange="filter()" name="date" id="" class="form-control date">
+                            <option value="">Select Date</option>
                             @foreach($exceedFuels as $e)
                                 <option @if($request->date == $e->day) selected @endif value="{{ $e->day }}">{{ $e->day }}</option>
                             @endforeach
@@ -24,7 +24,6 @@
                     <th style="width: 150px">Station</th>
                     <th style="width: 150px">Dispenser</th>
                     <th>Liter</th>
-                    <th>Bonus</th>
                     <th>Client</th>
                     <th>Date</th>
                 </tr>
@@ -35,7 +34,6 @@
                             <td>{{ $d->dispensers->stations->name  }}</td>
                             <td>{{ $d->dispensers->name }}</td>
                             <td>{{ $d->liter }}</td>
-                            <td>@if(isset($d->bonuses->bonus)) {{ $d->bonuses->bonus }} @endif</td>
                             <td>@if(isset($d->clients->name)) {{ $d->clients->name }} @endif</td>
                             <td>{{ $d->created_at }}</td>
                         </tr>

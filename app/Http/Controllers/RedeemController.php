@@ -55,9 +55,10 @@ class RedeemController extends Controller
         $fuels->whereHas("bonuses", function($query) use($request) {
             $query->where("bonus", "<", 0);
         });
+        $fuels->with(["bonuses" => function($query) use($request) {
+            $query->where("bonus", "<", 0);
+        }]);
         $fuels = $fuels->orderBy("fuels.created_at", "DESC")->paginate(self::PAGINATION);
-
-
         $dispensers = $this->getDispensers($request);
         $clients = Client::all();
         return view('redeems.index', compact("fuels", "stations", "request", "dispensers", "clients"));

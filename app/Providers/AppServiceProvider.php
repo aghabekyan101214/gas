@@ -32,9 +32,11 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         $bonus = Client::selectRaw("sum(bonus) as bonus")->first();
         $static = StaticData::first();
-        $static_date = explode(" ", $static->updated_at)[0] ?? 0;
+        if($static) {
+            $static_date = explode(" ", $static->updated_at)[0] ?? 0;
+        }
         $today = explode(" ", Carbon::today())[0];
-        if($static_date != $today) {
+        if(isset($static_date) && $static_date != $today) {
             $static->updated_at = Carbon::today();
             $static->seen_count = 0;
             $static->save();

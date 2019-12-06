@@ -17,6 +17,7 @@ class BonusController extends Controller
 {
 
     private $bonus_percent = 0;
+    private $min_bonus = 5;
     const PAGINATION = 100;
 
     public function __construct()
@@ -63,6 +64,9 @@ class BonusController extends Controller
         $fuels->whereHas("bonuses", function($query) {
             $query->where("bonuses.bonus", '>', 0);
         });
+        $fuels->with(["bonuses" => function($query) use($request) {
+            $query->where("bonus", ">", 0);
+        }]);
         if(null != $request->from) {
             $request->from != $request->to ? $fuels->whereDate("created_at", ">=", $request->from)->whereDate("created_at", "<=", $request->to) : $fuels->whereDate("created_at", $request->from);
         } else {
@@ -123,12 +127,32 @@ class BonusController extends Controller
         $fuel->save();
 //        give the client bonus
         if(null == $f->client_id){
-            $bonus = new Bonus();
-            $bonus->id = GenerateRandomString::generate();
-            $bonus->fuel_id = $fuel->id;
-            $bonus->request_time = $request->time;
-            $bonus->bonus = $redeem == null ? ($fuel->liter * $this->bonus_percent) / 100 : -$request->liter;
-            $bonus->save();
+
+            $current_bonus = ClientController::getClientsBonus($fuel->client_id);
+
+            if(null != $redeem) {
+
+                if($current_bonus >= $this->min_bonus) {
+                    $bonus = new Bonus();
+                    $bonus->id = GenerateRandomString::generate();
+                    $bonus->fuel_id = $fuel->id;
+                    $bonus->request_time = $request->time;
+                    $bonus->bonus = $fuel->liter >= $current_bonus ? -$current_bonus : (-$fuel->liter);
+                    $bonus->save();
+                }
+
+            }
+
+
+            if( (null != $redeem && $current_bonus < $fuel->liter) || (null == $redeem) ) {
+
+                $bonus = new Bonus();
+                $bonus->id = GenerateRandomString::generate();
+                $bonus->fuel_id = $fuel->id;
+                $bonus->request_time = $request->time;
+                $bonus->bonus = (null == $redeem) ? ($fuel->liter * $this->bonus_percent) / 100 : ( ( ($fuel->liter - $current_bonus) * $this->bonus_percent  ) / 100 );
+                $bonus->save();
+            }
         }
 
         if($f->client_id != null) {
@@ -147,6 +171,10 @@ class BonusController extends Controller
         $data = array(
             "bonus" => number_format($client->bonus, 2)
         );
+        if(null != $redeem) {
+            $price = ($fuel->liter - $current_bonus) * $fuel->price;
+            $data["price"] = ($price > 0) ? intval($price) : 0;
+        }
         return $data;
     }
 

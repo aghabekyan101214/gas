@@ -5,12 +5,17 @@
         <div style="width: 100%;">
             <h1 style="text-align: center; margin-top: 0">Բարի Գալուստ</h1>
             <h1 style="text-align: center; font-size: 50px; font-weight: 400; color: black" class="client-name">{{ $client->name . " " . $client->surname }}</h1>
+            @if($bonus >= 5 )
+                <h1 style="text-align: center; font-size: 50px; font-weight: 400; color: black">Դուք Ունեք <span style="color: green">{{ $bonus }}</span>  լ Բոնուս </h1>
+            @endif
         </div>
     </div>
     <div class="row bonus-section" style="height: 50%; width: 100%">
         <div class="container" style="display: flex; justify-content: space-around;">
             <button onclick="getBonus()" class="btn btn-default bonus-btn black-btn">Կուտակել Բոնուս</button>
-            <button onclick="redeemBonus()" class="btn btn-success bonus-btn">Օգտագործել Բոնուս</button>
+            @if($bonus >= 5)
+                <button onclick="redeem()" class="btn btn-success bonus-btn">Օգտագործել Բոնուս</button>
+            @endif
         </div>
     </div>
     <div class="row redeem-section" style="display: none; height: 50%; width: 100%; background: #000000e3">

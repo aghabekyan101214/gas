@@ -16,7 +16,8 @@ class ClientSideController extends Controller
     {
         $client = Client::where("qr", $request->qr)->first();
         if(null != $client) {
-            return view("clientSide.getClient", compact("client"));
+            $bonus = ClientController::getClientsBonus($client->id);
+            return view("clientSide.getClient", compact("client", "bonus"));
         }
         return 0;
     }

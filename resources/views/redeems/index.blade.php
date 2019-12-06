@@ -62,7 +62,7 @@
                             <td>{{ $fuel->dispensers->stations->name  }}</td>
                             <td>{{ $fuel->dispensers->name }}</td>
                             <td>{{ $fuel->liter }}</td>
-                            <td>@if(isset($fuel->bonuses->bonus)) {{ -$fuel->bonuses->bonus }} @endif</td>
+                            <td>@if(isset($fuel->bonuses->bonus)) {{ $fuel->bonuses->bonus }} @endif</td>
                             <td>@if(isset($fuel->clients->name)) {{ $fuel->clients->name }} @endif</td>
                             <td>{{ $fuel->created_at }}</td>
                         </tr>

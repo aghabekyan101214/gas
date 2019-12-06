@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gas.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gas.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BonusController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientSideController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientSideController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CountFuelsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RedeemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clientSide/getClient.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clientSide/getClient.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/clients/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exceeds/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/redeems/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/redeems/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +258,8 @@
       <workItem from="1573710028241" duration="624000" />
       <workItem from="1574410131545" duration="2809000" />
       <workItem from="1574676969915" duration="2902000" />
-      <workItem from="1575264698014" duration="642000" />
+      <workItem from="1575264698014" duration="2130000" />
+      <workItem from="1575609490812" duration="24095000" />
     </task>
     <servers />
   </component>
@@ -285,5 +292,19 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="214" width="800" height="677" key="#SQL_Dialects" timestamp="1575610463696">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="214" width="800" height="677" key="#SQL_Dialects/0.27.1920.1053@0.27.1920.1053" timestamp="1575610463696" />
+    <state x="555" y="214" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575610471112">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="214" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1575610471112" />
+    <state x="100" y="125" width="1720" height="855" key="DiffContextDialog" timestamp="1575635262960">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="125" width="1720" height="855" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1575635262960" />
   </component>
 </project>
