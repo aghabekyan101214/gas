@@ -150,7 +150,7 @@ class CountFuelsController extends Controller
 
     private function getExceedFuels()
     {
-        $query = "SELECT day FROM ( SELECT DATE_FORMAT(fuels.created_at, '%Y-%m-%d') AS day, fuels.client_id FROM `bonuses` JOIN fuels ON fuels.id = bonuses.fuel_id JOIN clients ON clients.id = fuels.client_id GROUP BY DATE_FORMAT(fuels.created_at, '%Y-%m-%d'), fuels.client_id HAVING COUNT(fuels.client_id) >= $this->count ORDER BY DATE_FORMAT(fuels.created_at, '%Y-%m-%d') DESC ) tb GROUP by day ORDER BY DATE_FORMAT(day, '%Y-%m-%d') DESC";
+        $query = "SELECT day FROM ( SELECT to_char(fuels.created_at, 'YYYY-MM-DD') AS day, fuels.client_id FROM bonuses JOIN fuels ON fuels.id = bonuses.fuel_id JOIN clients ON clients.id = fuels.client_id GROUP BY to_char(fuels.created_at, 'YYYY-MM-DD'), fuels.client_id HAVING COUNT(fuels.client_id) >= $this->count ORDER BY to_char(fuels.created_at, 'YYYY-MM-DD') DESC ) tb GROUP by day ORDER BY day DESC";
         $days = DB::select($query);
         return $days;
     }

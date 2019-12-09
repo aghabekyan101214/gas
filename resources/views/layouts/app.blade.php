@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/plugins/images/favicon.png')}}">
-    <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>Gas Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('assets/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
