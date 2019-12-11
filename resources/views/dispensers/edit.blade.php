@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-info">
-                <div class="panel-heading"> Edit The Gas Station</div>
+                <div class="panel-heading"> Edit The Dispenser</div>
                 <div class="panel-wrapper collapse in" aria-expanded="true">
                     <div class="panel-body">
                         <form action="/admin/dispensers/{{ $dispenser->id }}" method="post" class="form-horizontal form-bordered">

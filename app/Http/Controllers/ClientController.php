@@ -43,6 +43,7 @@ class ClientController extends Controller
         $request->validate([
             'name'    => 'required|max:70',
             'surname' => 'required|max:100',
+            'birthday' => 'before:'.date('Y-m-d').'|after:'.date("1900-01-01"),
             'qr'      => 'required|unique:clients,qr'
         ]);
 
@@ -92,9 +93,10 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         $request->validate([
-            'name'    => 'required|max:70',
-            'surname' => 'required|max:100',
-            'qr'      => $client->qr == $request->qr ? 'required' : 'required|unique:clients,qr',
+            'name'     => 'required|max:70',
+            'surname'  => 'required|max:100',
+            'birthday' => 'before:'.date('Y-m-d').'|after:'.date("1900-01-01"),
+            'qr'       => $client->qr == $request->qr ? 'required' : 'required|unique:clients,qr',
         ]);
 
         $client->name = $request->name;

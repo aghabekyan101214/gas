@@ -17,11 +17,11 @@ class CreateClientsTable extends Migration
             $table->string('id', 255)->primary();
             $table->string("name", 70);
             $table->string("surname", 100);
-            $table->unsignedInteger("birthday")->nullable();
+            $table->unsignedBigInteger("birthday")->nullable();
             $table->string("car")->nullable();
             $table->string("license_plate", 50)->nullable();
             $table->unsignedSmallInteger("sync")->default(0);
-            $table->float("bonus")->default(0);
+            $table->decimal("bonus", 8, 2)->default(0);
             $table->timestamps();
         });
     }

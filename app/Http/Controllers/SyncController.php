@@ -32,8 +32,8 @@ class SyncController extends Controller
 
     public function __construct()
     {
-        self::$conn = DB::connection("mysql");
-        self::$conn2 = DB::connection("mysql_2");
+        self::$conn = DB::connection("pgsql");
+        self::$conn2 = DB::connection("pgsql2");
     }
 
     public static function start()
@@ -193,8 +193,13 @@ class SyncController extends Controller
                         "updated_at" => $client->updated_at,
                     ]);
 
+                    $c = Client::find($client->id);
+                    if(null != $c) {
+                        $c->updated_at = $c->created_at;
+                        $c->save();
+                    }
+
                 }
-                $data->update(["sync" => self::SYNCHRONIZED, "updated_at" => $client->created_at]);
                 \Log::info("Clients Table Updated");
             } catch (\Exception $exception) {
                 Log::info($exception);
@@ -274,8 +279,12 @@ class SyncController extends Controller
                         "updated_at" => $fuel->updated_at,
                     ]);
 
+                    $f = Fuel::find($fuel->id);
+                    if(null != $f) {
+                        $f->updated_at = $f->created_at;
+                        $f->save();
+                    }
                 }
-                $data->update(["sync" => self::SYNCHRONIZED, "updated_at" => $fuel->created_at]);
                 \Log::info("Fuels Table Updated");
             } catch (\Exception $exception) {
                 Log::info($exception);
@@ -353,6 +362,5 @@ class SyncController extends Controller
             }
         }
     }
-
 
 }

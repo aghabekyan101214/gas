@@ -61,6 +61,9 @@ class FuelController extends Controller
             $fuels->whereHas("bonuses", function ($query) use ($request, $mark) {
                 $query->where("bonus", $mark, 0);
             });
+            $fuels->with(["bonuses" => function($query) use($request, $mark) {
+                $query->where("bonus", $mark, 0);
+            }]);
         } else {
             $fuels->with("bonuses");
         }

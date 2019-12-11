@@ -14,6 +14,9 @@ header('Access-Control-Allow-Origin: *');
 Route::get('/', function () {
     return redirect('/admin');
 });
+Route::get('/home', function () {
+    return redirect('/admin');
+});
 
 Auth::routes();
 

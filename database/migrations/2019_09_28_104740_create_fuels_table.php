@@ -19,8 +19,8 @@ class CreateFuelsTable extends Migration
             $table->foreign("dispenser_id")->references("id")->on("dispensers")->onDelete("cascade")->onUpdate("cascade");
             $table->string("client_id", 255)->nullable();
             $table->foreign("client_id")->references("id")->on("clients")->onDelete("cascade")->onUpdate("cascade");
-            $table->float("liter");
-            $table->float("price");
+            $table->decimal("liter", 8, 2);
+            $table->decimal("price", 8, 2);
             $table->unsignedSmallInteger("sync")->default(0);
             $table->timestamps();
         });

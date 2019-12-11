@@ -12,14 +12,14 @@ class SynchronizeCron extends Command
      *
      * @var string
      */
-    protected $signature = 'sync:cron';
+    protected $signature = 'sync';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Synchronizing Local Data With Server';
 
     /**
      * Create a new command instance.

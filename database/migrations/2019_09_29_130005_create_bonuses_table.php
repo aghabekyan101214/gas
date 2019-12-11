@@ -15,7 +15,7 @@ class CreateBonusesTable extends Migration
     {
         Schema::create('bonuses', function (Blueprint $table) {
             $table->string('id', 255)->primary();
-            $table->float("bonus");
+            $table->decimal("bonus", 8, 2);
             $table->string("fuel_id", 255);
             $table->foreign("fuel_id")->references("id")->on("fuels")->onDelete("cascade")->onUpdate("cascade");
             $table->unsignedSmallInteger("sync")->default(0);
