@@ -89,6 +89,11 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+        'customlog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/custom'.date("Y-m-d").".log"),
+            'level' => 'info',
+        ],
     ],
 
 ];

@@ -39,7 +39,8 @@ class FileReadCron extends Command
     public function handle($count = null)
     {
         if($count == 12) return;
-        \Log::info("Cron is working fine! + $count");
+        \Log::channel('customlog')->info('Hello world!!');
+//        \Log::info("Cron is working fine! + $count");
         FileReadController::start();
         sleep(5);
         $count = $count == null ? 1 : $count + 1;
