@@ -13,7 +13,7 @@ use App\Fuel;
 class FileReadController extends Controller
 {
 
-    const PATH = "info/station/";
+    const PATH = "info/station/ftp/";
     /**
      * Display a listing of the resource.
      *
