@@ -22,6 +22,7 @@ class FileReadController extends Controller
     public static function start($count = 1)
     {
         $path = self::PATH;
+        \Log::info(scandir($path));
         if($count > 10) return;
         if(!is_dir($path)) {
             return;
