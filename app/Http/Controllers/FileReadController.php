@@ -51,9 +51,9 @@ class FileReadController extends Controller
     private function insert($data)
     {
         $data = explode("\n", $data);
-        \Log::info($data);
+
         if(isset($data[0])) {
-            $dispenser = Dispenser::where("identificator", $data[0])->first();
+            $dispenser = Dispenser::where("identificator", intval($data[0]))->first();
             if(null == $dispenser) return;
             $fuel = new Fuel([
                 "id" => GenerateRandomString::generate(),
