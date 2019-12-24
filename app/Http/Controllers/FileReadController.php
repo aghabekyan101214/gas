@@ -27,7 +27,6 @@ class FileReadController extends Controller
             return;
         }
         $files = scandir($path);
-        \Log::info($files);
         foreach ($files as $file) {
             if($file != "." && $file != "..") {
                 (new self())->read($path.$file);
@@ -45,7 +44,8 @@ class FileReadController extends Controller
         fclose($myFile);
         if(null != $data || $data) {
             $insert = $this->insert($data);
-            if($insert) unlink($filePath);
+            \Log::info(unlink($insert));
+            if($insert) \Log::info(unlink($filePath));
         }
     }
 
