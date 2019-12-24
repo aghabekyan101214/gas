@@ -22,13 +22,12 @@ class FileReadController extends Controller
     public static function start($count = 1)
     {
         $path = self::PATH;
-        \Log::info(scandir($path));
         if($count > 10) return;
         if(!is_dir($path)) {
             return;
         }
         $files = scandir($path);
-
+        \Log::info($files);
         foreach ($files as $file) {
             if($file != "." && $file != "..") {
                 (new self())->read($path.$file);
