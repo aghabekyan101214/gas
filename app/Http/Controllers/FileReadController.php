@@ -44,7 +44,7 @@ class FileReadController extends Controller
         fclose($myFile);
         if(null != $data || $data) {
             $insert = $this->insert($data);
-            \Log::info(unlink($insert));
+            \Log::info($insert);
             if($insert) \Log::info(unlink($filePath));
         }
     }
