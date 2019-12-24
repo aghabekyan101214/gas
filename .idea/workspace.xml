@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6942ba0f-344d-416c-88bf-2e63795fb4b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/FileReadCron.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/FileReadCron.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/logging.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/logging.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileReadController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +154,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql&#10;postgresql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -269,7 +269,10 @@
       <workItem from="1576073890911" duration="616000" />
       <workItem from="1576128436403" duration="372000" />
       <workItem from="1576218933245" duration="1332000" />
-      <workItem from="1576230576473" duration="746000" />
+      <workItem from="1576230576473" duration="3409000" />
+      <workItem from="1576473543323" duration="1481000" />
+      <workItem from="1576577742197" duration="93000" />
+      <workItem from="1577187266865" duration="3219000" />
     </task>
     <servers />
   </component>
@@ -320,5 +323,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="263" height="500" key="HiddenNamespacesPopup/0.27.1920.1053@0.27.1920.1053" timestamp="1575977636705" />
+    <state x="605" y="288" width="805" height="528" key="find.popup" timestamp="1576234959390">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="605" y="288" width="805" height="528" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1576234959390" />
   </component>
 </project>

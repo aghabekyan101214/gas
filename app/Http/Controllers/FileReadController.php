@@ -13,7 +13,7 @@ use App\Fuel;
 class FileReadController extends Controller
 {
 
-    const PATH = "info/station/ftp/";
+    const PATH = "/home/karen/karen/station/";
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +21,7 @@ class FileReadController extends Controller
      */
     public static function start($count = 1)
     {
-        $path = public_path(self::PATH);
+        $path = self::PATH;
         if($count > 10) return;
         if(!is_dir($path)) {
             return;
