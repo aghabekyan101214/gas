@@ -44,14 +44,14 @@ class FileReadController extends Controller
         fclose($myFile);
         if(null != $data || $data) {
             $insert = $this->insert($data);
-            \Log::info($insert);
-            if($insert) \Log::info(unlink($filePath));
+            if($insert) unlink($filePath);
         }
     }
 
     private function insert($data)
     {
         $data = explode("\n", $data);
+        \Log::info($data);
         if(isset($data[0])) {
             $dispenser = Dispenser::where("identificator", $data[0])->first();
             if(null == $dispenser) return;
